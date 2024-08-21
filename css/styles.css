@@ -2,7 +2,7 @@
 .card-body,
 .container,
 .site-header {
-  font-family: 'Verdana', serif !important;
+  font-family: Arial, sans-serif;
 }
 
 .jumbotron .display-4 {
@@ -76,6 +76,10 @@ footer p {
   margin-bottom: .25rem;
 }
 
+footer a {
+    color: #63427b;
+    text-decoration: none;
+}
 .site-header a {
   color: white;
   transition: ease-in-out color .15s;
