@@ -188,3 +188,10 @@ a.custom-card:hover {
 .checked {
   color: orange;
 }
+
+#botonIngreso {
+  color: #fff;
+  border: 1px solid hsl(194, 28%, 31%);
+  background-color: hsl(194, 28%, 31%);
+  border-radius: 3px;
+}
