@@ -28,9 +28,16 @@
           <input type="texto" id="usuario" placeholder="Usuario" name="uname" required> <br> 
           <label for="contr"></label>
           <input type="cntraseña" id="contr" placeholder="Contraseña" name="contr" required> <br>
-          <a>¿Olvidaste tu contraseña?</a> <br>
-          <button id="botonIngreso" type="submit">Ingresar</button>   
+          <a href="https://www.google.com/intl/es/gmail/about/"> ¿Olvidaste tu contraseña?</a> <br>
+          <button onclick="myFunction()" id="botonIngreso" type="submit">Ingresar</button>   
         </form>
+
+        <script>
+          function myFunction(){
+            location.href = "http://127.0.0.1:5500/index.html";
+          }
+        </script>
+        
       </div>
   </main>
 
