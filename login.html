@@ -17,6 +17,15 @@
 </head>
 
 <body>
+  <script>
+    window.onload = function() {
+      if (!
+          localStorage.getItem("loggedIn")) {
+          window.location.href = "login.html";
+      }
+    };
+  
+  </script>
   <main class="mt-5 cajas">
       <div class="caja" id="cajaimg">
         <img id="imgecom" src="img/imagenlogin.jpg"  alt="imagen ecomerce">
@@ -29,15 +38,8 @@
           <label for="contr"></label>
           <input type="cntraseña" id="contr" placeholder="Contraseña" name="contr" required> <br>
           <a href="https://www.google.com/intl/es/gmail/about/"> ¿Olvidaste tu contraseña?</a> <br>
-          <button onclick="myFunction()" id="botonIngreso" type="submit">Ingresar</button>   
+          <button id="botonIngreso" type="submit">Ingresar</button>   
         </form>
-
-        <script>
-          function myFunction(){
-            location.href = "http://127.0.0.1:5500/index.html";
-          }
-        </script>
-        
       </div>
   </main>
 
