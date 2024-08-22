@@ -2,15 +2,11 @@
 .card-body,
 .container,
 .site-header {
-  font-family: 'Verdana', serif !important;
+  font-family: Arial, sans-serif;
 }
 
 .jumbotron .display-4 {
   font-weight: bold;
-}
-
-nav a {
-  text-decoration: none;
 }
 
 .bd-placeholder-img {
@@ -76,6 +72,10 @@ footer p {
   margin-bottom: .25rem;
 }
 
+footer a {
+    color: #63427b;
+    text-decoration: none;
+}
 .site-header a {
   color: white;
   transition: ease-in-out color .15s;
@@ -182,35 +182,52 @@ a.custom-card:hover {
   color: orange;
 }
 
- #login1{
+#imgecom {
+  width: 100%;
+}
+
+.cajas {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-end;
+}
+
+.caja {
+  width: 20%;
+  height: auto;
+}
+
+#cajaimg {
+  margin-left: 10%;
+  width: 80%;
+  align-self: center;
+}
+
+#cajalog {
+  margin: 0% 10%;
   width: 40%;
-  height: auto;
-  margin: 10% 10%;
- }
+  align-self: center;
+}
 
- #login2{
-  width: 25%;
-  height: auto;
-  margin: 5% 5%;
- }
-
-#containerform {
-  display:flow-root;
-text-align: right;
-margin: 80% 5%;
+#imagenlogo{ 
+  display: block;
+  width: 100%;
+  margin: auto;
 }
 
 #usuario {
   background-color: #ECBEEB;
-  width: 20%;
-  margin: 20px 0px;
+  width: 100%;
+  padding: 5px 5px;
   border-radius: 3px;
   border: 1px solid #9D4D99;
 }
 
 #contr {
   background-color: #ECBEEB;
-  width: 20%;
+  width: 100%;
+  padding: 5px 5px;
   border-radius: 3px;
   border: 1px solid #9D4D99;
 }
@@ -220,6 +237,5 @@ margin: 80% 5%;
   border: 1px solid hsl(194, 28%, 31%);
   background-color: hsl(194, 28%, 31%);
   border-radius: 3px;
-  width: 20%;
-  margin-left: 5px;
+  width: 100%;
 }

@@ -10,31 +10,35 @@
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/styles.css" rel="stylesheet">
   <style>
-    body {
-      background-color: rgb(248, 249, 250);
+    .mt-5 {
+      background-color: #ffffff;
     }
   </style>
 </head>
 
 <body>
-  <main class="mt-5">
-    
-
-      <img id="login1" src="/img/imagenlogin.jpg"  alt="imagen ecomerce">
-      <img id="login2" src="/img/loginrosa.png" alt="logo JaP"> 
-    
-      <div id="containerform">
+  <main class="mt-5 cajas">
+      <div class="caja" id="cajaimg">
+        <img id="imgecom" src="img/imagenlogin.jpg"  alt="imagen ecomerce">
+      </div>
+      <div class="caja" id="cajalog">
         <form id="login" action="procesarRegistro.php" method="post">
+          <img id="imagenlogo" src="/img/loginrosa.png" alt="logo JaP"> <br>
           <label for="usuario"></label>
           <input type="texto" id="usuario" placeholder="Usuario" name="uname" required> <br> 
           <label for="contr"></label>
           <input type="cntraseña" id="contr" placeholder="Contraseña" name="contr" required> <br>
-          <a href="#"> olvidaste tu contraseña?</a> <br>
-          <button id="botonIngreso" type="submit">Ingresar</button>   
+          <a href="https://www.google.com/intl/es/gmail/about/"> ¿Olvidaste tu contraseña?</a> <br>
+          <button onclick="myFunction()" id="botonIngreso" type="submit">Ingresar</button>   
         </form>
+
+        <script>
+          function myFunction(){
+            location.href = "http://127.0.0.1:5500/index.html";
+          }
+        </script>
+        
       </div>
-       
-    </div>
   </main>
 
   <footer class="text-muted">
