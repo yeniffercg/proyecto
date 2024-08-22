@@ -17,6 +17,8 @@ function mostrarAutos(array){
                 <div class="card-body">
                     <h5 class="card-title">${element.name}</h5>
                     <p class="card-text">${element.description}</p>
+                    <h5 class="card-text">${element.currency} ${element.cost}</h5>
+                    <p class="card-text">${element.soldCount} productos vendidos</p>
                 </div>
                 </div>
             </div>
