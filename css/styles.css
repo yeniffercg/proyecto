@@ -9,10 +9,6 @@
   font-weight: bold;
 }
 
-nav a {
-  text-decoration: none;
-}
-
 .bd-placeholder-img {
   font-size: 1.125rem;
   text-anchor: middle;
@@ -193,23 +189,51 @@ a.custom-card:hover {
   color: orange;
 }
 
+#imgecom {
+  width: 100%;
+}
+
+.cajas {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-end;
+}
+
+.caja {
+  width: 20%;
+  height: auto;
+}
+
+#cajaimg {
+  margin-left: 10%;
+  width: 80%;
+  align-self: center;
+}
+
+#cajalog {
+  margin: 0% 10%;
+  width: 40%;
+  align-self: center;
+}
 
 #imagenlogo{ 
-  width: 90px;
+  display: block;
+  width: 100%;
+  margin: auto;
 }
 
 #usuario {
   background-color: #ECBEEB;
-  width: 50%;
+  width: 100%;
   padding: 5px 5px;
-  margin: 20px 0px;
   border-radius: 3px;
   
 }
 
 #contr {
   background-color: #ECBEEB;
-  width: 50%;
+  width: 100%;
   padding: 5px 5px;
   border-radius: 3px;
 }
@@ -220,6 +244,5 @@ a.custom-card:hover {
   border: 1px solid hsl(194, 28%, 31%);
   background-color: hsl(194, 28%, 31%);
   border-radius: 3px;
-  width: 50%;
-  margin-left: 5px;
+  width: 100%;
 }
