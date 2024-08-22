@@ -189,27 +189,31 @@ a.custom-card:hover {
   color: orange;
 }
 
+#imagenlogin {
+  width: 50%;
+  height: auto;
+}
 
 #imagenlogo{ 
-  width: 90px;
+  width: 30%;
+  height: auto;
+  margin-left: 30px;
 }
 
 #usuario {
   background-color: #ECBEEB;
   width: 50%;
-  padding 5px 5px;
   margin: 20px 0px;
   border-radius: 3px;
-  
+  border: 1px solid #9D4D99;
 }
 
 #contr {
   background-color: #ECBEEB;
   width: 50%;
-  padding 5px 5px;
   border-radius: 3px;
+  border: 1px solid #9D4D99;
 }
-
 
 #botonIngreso {
   color: #fff;
