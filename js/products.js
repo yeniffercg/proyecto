@@ -11,7 +11,7 @@ function mostrarAutos(array){
     let mostrar = document.getElementById("autitos");
     array.forEach((element) => {
         mostrar.innerHTML += `
-        <div class="row row-cols-1 row-cols-md-3">
+        <div style="display: flex; flex-direction: row; flex-wrap: wrap;" class="row row-cols-1 row-cols-md-3">
             <div class="col">
                 <div class="card h-100">
                 <img src="${element.image}" class="card-img-top" alt="...">
