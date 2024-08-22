@@ -201,7 +201,7 @@ a.custom-card:hover {
 #usuario {
   background-color: #ECBEEB;
   width: 50%;
-  padding 5px 5px;
+  padding: 5px 5px;
   margin: 20px 0px;
   border-radius: 3px;
   
@@ -210,7 +210,7 @@ a.custom-card:hover {
 #contr {
   background-color: #ECBEEB;
   width: 50%;
-  padding 5px 5px;
+  padding: 5px 5px;
   border-radius: 3px;
 }
 
