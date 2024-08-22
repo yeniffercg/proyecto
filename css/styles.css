@@ -95,14 +95,6 @@ footer p {
   max-height: 100%;
 }
 
-.alert {
-  position: fixed;
-  top: 80px;
-  width: 50%;
-  left: 50%;
-  transform: translate(-50%, 0);
-}
-
 .lds-ring {
   display: inline-block;
   position: relative;
@@ -177,6 +169,7 @@ footer p {
 
 main {
   min-height: calc(100vh - 210px);
+  background-color: #fff;
 }
 
 a.custom-card,
@@ -189,20 +182,27 @@ a.custom-card:hover {
   color: orange;
 }
 
-#imagenlogin {
-  width: 50%;
+ #login1{
+  width: 40%;
   height: auto;
-}
+  margin: 10% 10%;
+ }
 
-#imagenlogo{ 
-  width: 30%;
+ #login2{
+  width: 25%;
   height: auto;
-  margin-left: 30px;
+  margin: 5% 5%;
+ }
+
+#containerform {
+  display:flow-root;
+text-align: right;
+margin: 80% 5%;
 }
 
 #usuario {
   background-color: #ECBEEB;
-  width: 50%;
+  width: 20%;
   margin: 20px 0px;
   border-radius: 3px;
   border: 1px solid #9D4D99;
@@ -210,7 +210,7 @@ a.custom-card:hover {
 
 #contr {
   background-color: #ECBEEB;
-  width: 50%;
+  width: 20%;
   border-radius: 3px;
   border: 1px solid #9D4D99;
 }
@@ -220,6 +220,6 @@ a.custom-card:hover {
   border: 1px solid hsl(194, 28%, 31%);
   background-color: hsl(194, 28%, 31%);
   border-radius: 3px;
-  width: 50%;
+  width: 20%;
   margin-left: 5px;
 }
