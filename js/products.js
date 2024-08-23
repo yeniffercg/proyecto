@@ -11,17 +11,17 @@ function mostrarAutos(array){
     let mostrar = document.getElementById("autitos");
     array.forEach((element) => {
         mostrar.innerHTML += `
-        <div style="display: flex; flex-direction: row; flex-wrap: wrap;" class="row row-cols-1 row-cols-md-3">
             <div class="col">
                 <div class="card h-100">
                 <img src="${element.image}" class="card-img-top" alt="...">
                 <div class="card-body">
                     <h5 class="card-title">${element.name}</h5>
                     <p class="card-text">${element.description}</p>
+                    <h5 class="card-text">${element.currency} ${element.cost}</h5>
+                    <p class="card-text">${element.soldCount} productos vendidos</p>
                 </div>
                 </div>
             </div>
-        </div>
         `;
     });
 }
