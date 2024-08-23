@@ -4,6 +4,8 @@ document.getElementById("login").addEventListener("submit", function(event){
     let contraseña = document.getElementById("contr");
 
     if (usuario.value !== "" && contraseña.value !== ""){
+     localStorage.setItem("loggedIn" , "true");
     window.location.href = "../index.html";
+
     }
 })
