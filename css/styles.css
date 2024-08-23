@@ -182,10 +182,16 @@ a.custom-card:hover {
   color: orange;
 }
 
-.row, .row-cols-1, .row-cols-md-3 {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
+#productos {
+  margin: 3% 0%;
+}
+
+.vendidos {
+  color: rgba(0, 0, 0, 0.541);
+}
+
+.nombreProd {
+  font-weight: bold;
 }
 
 #imgecom {
