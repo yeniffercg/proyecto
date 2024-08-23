@@ -12,7 +12,7 @@ function mostrarAutos(array){
     array.forEach((element) => {
         mostrar.innerHTML += `
             <div class="col">
-                <div class="card h-100 producto">
+                <div class="card h-100">
                 <img src="${element.image}" class="card-img-top" alt="${element.name}">
                 <div class="card-body">
                     <h5 class="card-title nombreProd">${element.name}</h5>
