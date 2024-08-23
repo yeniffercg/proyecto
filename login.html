@@ -16,7 +16,14 @@
   </style>
 </head>
 
-<body>
+<body> 
+  <script>
+    window.onload = function() {
+      if (!
+          localStorage.getItem("loggedIn")) {
+          window.location.href = "login.html";
+      }
+    }; </script>
   <main class="mt-5 cajas">
       <div class="caja" id="cajaimg">
         <img id="imgecom" src="img/imagenlogin.jpg"  alt="imagen ecomerce">
