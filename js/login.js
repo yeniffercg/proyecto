@@ -5,7 +5,6 @@ document.getElementById("login").addEventListener("submit", function(event){
 
     if (usuario.value !== "" && contraseña.value !== ""){
      localStorage.setItem("loggedIn" , "true");
-    window.location.href = "../index.html";
-
+    window.location.href = "index.html";
     }
 })
