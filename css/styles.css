@@ -18,10 +18,17 @@
   user-select: none;
 }
 
-@media (min-width: 768px) {
-  .bd-placeholder-img-lg {
-    font-size: 3.5rem;
-  }
+@media (max-width: 700px){
+ #cajaimg{
+  display: none;
+ }
+ .cajas{
+  display: block;
+ }
+ #cajalog{
+  width: 100%;
+  margin: 20% 10% 20% 15%;
+ }
 }
 
 .jumbotron {
@@ -35,6 +42,12 @@
   background-repeat: no-repeat;
   color: black;
   font-weight: bold;
+}
+
+@media (min-width: 768px) {
+  .bd-placeholder-img-lg {
+    font-size: 3.5rem;
+  }
 }
 
 @media (min-width: 768px) {
@@ -93,6 +106,7 @@ footer a {
 
 .img-fit {
   max-height: 100%;
+  height: auto;
 }
 
 .lds-ring {
@@ -194,6 +208,14 @@ a.custom-card:hover {
   font-weight: bold;
 }
 
+
+
+
+
+
+
+
+
 #imgecom {
   width: 100%;
 }
@@ -256,4 +278,10 @@ a.custom-card:hover {
   text-decoration: none;
   color: #395b65;
   float: right;
+}
+
+.contenedor-gral{
+  max-width: 1000px;
+  width: 80%;
+  box-sizing: border-box;
 }
