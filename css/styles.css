@@ -257,3 +257,35 @@ a.custom-card:hover {
   color: #395b65;
   float: right;
 }
+
+@media (max-width: 500px) {
+  #cajaimg {
+    display: none;
+  }
+  .cajas {
+    display: block;
+  }
+  .caja {
+    width: auto;
+  }
+  #cajalog {
+    width: auto;
+  }
+  .container, .container-fluid, .container-lg, .container-md, .container-sm, .container-xl, .container-xxl {
+    width: 100%;
+    margin: 0%
+  }
+  body {
+    margin: 0 auto;
+  }
+  .jumbotron {
+    background-size: contain;
+    background-position: top;
+    height: 100px;
+    background-color: #f8f9fa
+  }
+  .mt-5 {
+    margin-top: 3rem !important;
+    margin-bottom: 3rem;
+  }
+}
