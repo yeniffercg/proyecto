@@ -228,12 +228,17 @@ a.custom-card:hover {
   margin: auto;
 }
 
-#usuario {
+#email {
   background-color: #ECBEEB;
   width: 100%;
   padding: 5px 5px;
   border-radius: 3px;
   border: 1px solid #9D4D99;
+}
+
+#userEmail {
+  color: #fff;
+  align-self: center;
 }
 
 #contr {
