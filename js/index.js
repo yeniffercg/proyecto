@@ -11,17 +11,16 @@ document.addEventListener("DOMContentLoaded", function(){
         localStorage.setItem("catID", 103);
         window.location = "products.html"
     });
+    
+    const userEmail = localStorage.getItem("userEmail");
+    
     window.onload = function() {
-      if (!
-          localStorage.getItem("loggedIn")) {
+      if (!localStorage.getItem("loggedIn")) {
           window.location.href = "login.html";
       }
-    }
-    const userEmail = localStorage.getItem("userEmail");
-    window.onload = function() {
-        if(userEmail) {
+      if(userEmail) {
             document.getElementById("userEmail").textContent = userEmail;
         }
-        }
+    }
 });
 
