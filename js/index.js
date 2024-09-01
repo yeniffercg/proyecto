@@ -18,7 +18,4 @@ document.addEventListener("DOMContentLoaded", function(){
       }
     }
 });
-userEmail = localStorage.getItem('userEmail');
-        if (userEmail) {
-            document.getElementById('userEmail').textContent = userEmail;
-        }
+

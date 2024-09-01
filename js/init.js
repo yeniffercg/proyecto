@@ -40,6 +40,7 @@ let getJSONData = function(url){
     });
 }
 userEmail = localStorage.getItem('userEmail');
+    email = localStorage.getItem("email");
         if (userEmail) {
             document.getElementById('userEmail').textContent = userEmail;
         }
