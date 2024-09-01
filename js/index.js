@@ -12,15 +12,10 @@ document.addEventListener("DOMContentLoaded", function(){
         window.location = "products.html"
     });
     
-    const userEmail = localStorage.getItem("userEmail");
-    
     window.onload = function() {
       if (!localStorage.getItem("loggedIn")) {
           window.location.href = "login.html";
       }
-      if(userEmail) {
-            document.getElementById("userEmail").textContent = userEmail;
-        }
     }
 });
 
