@@ -17,5 +17,11 @@ document.addEventListener("DOMContentLoaded", function(){
           window.location.href = "login.html";
       }
     }
+    const userEmail = localStorage.getItem("userEmail");
+    window.onload = function() {
+        if(userEmail) {
+            document.getElementById("userEmail").textContent = userEmail;
+        }
+        }
 });
 
