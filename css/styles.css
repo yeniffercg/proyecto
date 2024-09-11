@@ -19,7 +19,7 @@
 }
 
 @media (max-width: 700px){
- #cajaimg{
+ .caja{
   display: none;
  }
  .cajas{
@@ -280,8 +280,20 @@ a.custom-card:hover {
   float: right;
 }
 
-.contenedor-gral{
+.container{
   max-width: 1000px;
   width: 80%;
   box-sizing: border-box;
+}
+
+.btn-group{
+  background-color: #9c2557;
+  border-radius: 5%;
+}
+
+.Rango{
+  width: 200px;
+  background-color: rgb(161, 158, 158);
+  border-radius: 5%;
+  display: -webkit-inline-box;
 }
