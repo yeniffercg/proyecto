@@ -18,17 +18,10 @@
   user-select: none;
 }
 
-@media (max-width: 700px){
- .caja{
-  display: none;
- }
- .cajas{
-  display: block;
- }
- #cajalog{
-  width: 100%;
-  margin: 20% 10% 20% 15%;
- }
+@media (min-width: 768px) {
+  .bd-placeholder-img-lg {
+    font-size: 3.5rem;
+  }
 }
 
 .jumbotron {
@@ -42,12 +35,6 @@
   background-repeat: no-repeat;
   color: black;
   font-weight: bold;
-}
-
-@media (min-width: 768px) {
-  .bd-placeholder-img-lg {
-    font-size: 3.5rem;
-  }
 }
 
 @media (min-width: 768px) {
@@ -106,7 +93,6 @@ footer a {
 
 .img-fit {
   max-height: 100%;
-  height: auto;
 }
 
 .lds-ring {
@@ -196,26 +182,6 @@ a.custom-card:hover {
   color: orange;
 }
 
-#productos {
-  margin: 3% 0%;
-}
-
-.vendidos {
-  color: rgba(0, 0, 0, 0.541);
-}
-
-.nombreProd {
-  font-weight: bold;
-}
-
-
-
-
-
-
-
-
-
 #imgecom {
   width: 100%;
 }
@@ -250,7 +216,7 @@ a.custom-card:hover {
   margin: auto;
 }
 
-#usuario {
+#email {
   background-color: #ECBEEB;
   width: 100%;
   padding: 5px 5px;
@@ -280,20 +246,34 @@ a.custom-card:hover {
   float: right;
 }
 
-.container{
-  max-width: 1000px;
-  width: 80%;
-  box-sizing: border-box;
-}
-
-.btn-group{
-  background-color: #9c2557;
-  border-radius: 5%;
-}
-
-.Rango{
-  width: 200px;
-  background-color: rgb(161, 158, 158);
-  border-radius: 5%;
-  display: -webkit-inline-box;
+@media (max-width: 500px) {
+  #cajaimg {
+    display: none;
+  }
+  .cajas {
+    display: block;
+  }
+  .caja {
+    width: auto;
+  }
+  #cajalog {
+    width: auto;
+  }
+  .container, .container-fluid, .container-lg, .container-md, .container-sm, .container-xl, .container-xxl {
+    width: 100%;
+    margin: 0%
+  }
+  body {
+    margin: 0 auto;
+  }
+  .jumbotron {
+    background-size: contain;
+    background-position: top;
+    height: 100px;
+    background-color: #f8f9fa
+  }
+  .mt-5 {
+    margin-top: 3rem !important;
+    margin-bottom: 3rem;
+  }
 }

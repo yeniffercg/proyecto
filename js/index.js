@@ -11,10 +11,11 @@ document.addEventListener("DOMContentLoaded", function(){
         localStorage.setItem("catID", 103);
         window.location = "products.html"
     });
+    
     window.onload = function() {
-      if (!
-          localStorage.getItem("loggedIn")) {
+      if (!localStorage.getItem("loggedIn")) {
           window.location.href = "login.html";
       }
     }
 });
+
