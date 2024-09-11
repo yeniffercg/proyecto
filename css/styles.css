@@ -182,18 +182,6 @@ a.custom-card:hover {
   color: orange;
 }
 
-#productos {
-  margin: 3% 0%;
-}
-
-.vendidos {
-  color: rgba(0, 0, 0, 0.541);
-}
-
-.nombreProd {
-  font-weight: bold;
-}
-
 #imgecom {
   width: 100%;
 }
