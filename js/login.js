@@ -1,9 +1,9 @@
 document.getElementById("login").addEventListener("submit", function(event){
     event.preventDefault();
-    let usuario = document.getElementById("usuario");
+    let email = document.getElementById("email");
     let contraseña = document.getElementById("contr");
 
-    if (usuario.value !== "" && contraseña.value !== ""){
+    if (email.value !== "" && contraseña.value !== ""){
      localStorage.setItem("loggedIn" , "true");
     window.location.href = "index.html";
     }
