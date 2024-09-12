@@ -26,11 +26,16 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 });
 
+function setProdID(id) {
+    localStorage.setItem("prodID", id);
+    window.location = "product-info.html"
+}
+
 function mostrarProductos(array) {
     let mostrar = document.getElementById("productos");
     array.forEach((element) => {
         mostrar.innerHTML += `
-            <div class="col mb-4">
+            <div onclick="setProdID(${element.id})" class="col mb-4">
                 <div class="card h-100 ">
                     <img src="${element.image}" class="card-img-top" alt="${element.name}">
                     <div class="card-body">
