@@ -15,9 +15,10 @@ document.addEventListener("DOMContentLoaded", function() {
     const url = `https://japceibal.github.io/emercado-api/cats_products/${catID}.json`;
 
     getJSONData(url).then(function(resultado) {
+        let p = resultado.data;
         if (resultado.status === 'ok') {
-            console.log(resultado.data);
-            mostrarProductos(resultado.data.products);
+            console.log(p);
+            mostrarProductos(p);
         } else {
             console.error("Error al obtener los datos:", resultado.status);
         }
@@ -26,11 +27,24 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 });
 
-function mostrarProductos(array) {
+function setProdID(id) {
+    localStorage.setItem("prodID", id);
+    window.location = "product-info.html"
+}
+
+function mostrarProductos(p) {
+    let cat = document.getElementById("category");
+    cat.innerHTML += `<a href="index.html" class="text-decoration-none">Inicio</a> > <a href="products.html" class="text-decoration-none">${p.catName}</a>`;
+    
+    productos(p.products)
+
+}
+
+function productos(array) {
     let mostrar = document.getElementById("productos");
     array.forEach((element) => {
         mostrar.innerHTML += `
-            <div class="col mb-4">
+            <div onclick="setProdID(${element.id})" class="col mb-4">
                 <div class="card h-100 ">
                     <img src="${element.image}" class="card-img-top" alt="${element.name}">
                     <div class="card-body">
