@@ -16,8 +16,9 @@ document.addEventListener("DOMContentLoaded", function() {
 
     getJSONData(url).then(function(resultado) {
         if (resultado.status === 'ok') {
-            console.log(resultado.data);
-            mostrarProductos(resultado.data.products);
+            productosArray = resultado.data.products;
+        mostrarProductos(productosArray);
+        habilitarFiltro(productosArray); 
         } else {
             console.error("Error al obtener los datos:", resultado.status);
         }
@@ -28,6 +29,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 function mostrarProductos(array) {
     let mostrar = document.getElementById("productos");
+    mostrar.innerHTML = "";
     array.forEach((element) => {
         mostrar.innerHTML += `
             <div class="col mb-4">
@@ -42,5 +44,24 @@ function mostrarProductos(array) {
                 </div>
             </div>
         `;
+    });
+}
+
+function habilitarFiltro(productosArray) {
+     buscarInput = document.getElementById("buscarInput");
+     valores = document.getElementById("valores");
+     productosContainer = document.getElementById("productos");
+
+    buscarInput.addEventListener("input", function(e) {
+        searchValue = e.target.value.toLowerCase();
+        valores.textContent = searchValue;
+         productosFiltrados = productosArray.filter(producto => {
+             titulo = producto.name.toLowerCase();
+             descripcion = producto.description.toLowerCase();
+            return titulo.includes(searchValue) || descripcion.includes(searchValue);
+        });
+
+        productosContainer.innerHTML = ""; 
+        mostrarProductos(productosFiltrados); 
     });
 }
