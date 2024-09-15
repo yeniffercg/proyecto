@@ -19,6 +19,9 @@ document.addEventListener("DOMContentLoaded", function() {
         if (resultado.status === 'ok') {
             console.log(p);
             mostrarProductos(p);
+            productosArray = resultado.data.products;
+            mostrarProductos(productosArray);
+            habilitarFiltro(productosArray); 
         } else {
             console.error("Error al obtener los datos:", resultado.status);
         }
@@ -42,6 +45,7 @@ function mostrarProductos(p) {
 
 function productos(array) {
     let mostrar = document.getElementById("productos");
+    mostrar.innerHTML = "";
     array.forEach((element) => {
         mostrar.innerHTML += `
             <div onclick="setProdID(${element.id})" class="col mb-4">
@@ -56,5 +60,24 @@ function productos(array) {
                 </div>
             </div>
         `;
+    });
+}
+
+function habilitarFiltro(productosArray) {
+     buscarInput = document.getElementById("buscarInput");
+     valores = document.getElementById("valores");
+     productosContainer = document.getElementById("productos");
+
+    buscarInput.addEventListener("input", function(e) {
+        searchValue = e.target.value.toLowerCase();
+        valores.textContent = searchValue;
+         productosFiltrados = productosArray.filter(producto => {
+             titulo = producto.name.toLowerCase();
+             descripcion = producto.description.toLowerCase();
+            return titulo.includes(searchValue) || descripcion.includes(searchValue);
+        });
+
+        productosContainer.innerHTML = ""; 
+        mostrarProductos(productosFiltrados); 
     });
 }
