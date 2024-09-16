@@ -20,26 +20,13 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 });
 
-function setProdID(id) {
-    localStorage.setItem("prodID", id);
-    window.location = "product-info.html"
-}
-
-function mostrarProductos(p) {
-    let cat = document.getElementById("category");
-    cat.innerHTML += `<a href="index.html" class="text-decoration-none">Inicio</a> > <a href="products.html" class="text-decoration-none">${p.catName}</a>`;
-    
-    productos(p.products)
-
-}
-
-function productos(array) {
+function mostrarProductos(array) {
     let mostrar = document.getElementById("productos");
     mostrar.innerHTML = "";
     array.forEach((element) => {
         costo.push(element.cost)
         mostrar.innerHTML += `
-            <div onclick="setProdID(${element.id})" class="col mb-4">
+            <div class="col mb-4">
                 <div class="card h-100 ">
                     <img src="${element.image}" class="card-img-top" alt="${element.name}">
                     <div class="card-body">
