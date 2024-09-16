@@ -1,6 +1,5 @@
 let costo = [];
 let products = [];
-const URL = `https://japceibal.github.io/emercado-api/cats_products/json`;
 
 document.addEventListener("DOMContentLoaded", function() {
     const catID = localStorage.getItem("catID");
@@ -10,6 +9,7 @@ document.addEventListener("DOMContentLoaded", function() {
     getJSONData(url).then(function(resultado) {
         if (resultado.status === 'ok') {
             console.log(resultado.data);
+            products = resultado.data.products
             mostrarProductos(resultado.data);
             habilitarFiltro(resultado.data.products); 
         } else {
@@ -113,8 +113,7 @@ function sortProducts(criteria, array){
         });
     }
     
-    mostrarProductos(result)
-    return result(criteria, products);
+    productos(result);
 }
 
 function setCatID(id) {
@@ -201,25 +200,29 @@ document.addEventListener("DOMContentLoaded", function(){
 
 
     //Filtrar
-    document.getElementById("rangeFilterCount").addEventListener("click", function(){
-        console.log('aca');
-        
+    document.getElementById("rangeFilterCount").addEventListener("click", function(){        
         minCount = document.getElementById("rangeFilterCountMin").value;
         maxCount = document.getElementById("rangeFilterCountMax").value;
+
         console.log(minCount);
         if (minCount !== '') {
         
             const minFiltered = products.filter((product) => product.cost >= minCount);
-            mostrarProductos(minFiltered);
-            console.log('resultado', minFiltered);
+            productos(minFiltered);
+            console.log('minResult', minFiltered);
         }
         if(maxCount !== ''){
             const maxFiltered = products.filter((product) => product.cost <= maxCount)
-            mostrarProductos(maxFiltered)
+            productos(maxFiltered)
             console.log('maxResult ', maxFiltered)
         }
+        if(minCount !== '' && maxCount !== '') {
+            const rangeFiltered = products.filter((product) => product.cost >= minCount && product.cost <= maxCount);
+            productos(rangeFiltered);
+            console.log('range', rangeFiltered);
+        }
         if(minCount === '' && maxCount === ''){
-           mostrarProductos(products)
+           productos(products)
         }
 
         showPricesList();
