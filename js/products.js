@@ -33,7 +33,7 @@ function productos(array) {
     array.forEach((element) => {
         costo.push(element.cost)
         mostrar.innerHTML += `
-            <div class="col mb-4">
+            <div onclick="setProdID(${element.id})" class="col mb-4">
                 <div class="card h-100 ">
                     <img src="${element.image}" class="card-img-top" alt="${element.name}">
                     <div class="card-body">
@@ -110,11 +110,10 @@ function sortProducts(criteria, array){
     productos(result);
 }
 
-function setCatID(id) {
-    localStorage.setItem("catID", id);
-    window.location = "products.html"
+function setProdID(id) {
+    localStorage.setItem("prodID", id);
+    window.location = "product-info.html"
 }
-
 
 function showPricesList(){
     
