@@ -43,6 +43,12 @@ function setCatID(id) {
 function showCategoriesList(){
 
     let htmlContentToAppend = "";
+    if (currentCategoriesArray.length === 0) {
+        htmlContentToAppend += `<div class="text-center p-4">
+                                    <p class="lead">Todavía no hay productos en esta categoría.</p>
+                                </div>`
+    } else {
+
     for(let i = 0; i < currentCategoriesArray.length; i++){
         let category = currentCategoriesArray[i];
 
@@ -69,6 +75,7 @@ function showCategoriesList(){
 
         document.getElementById("cat-list-container").innerHTML = htmlContentToAppend;
     }
+}
 }
 
 function sortAndShowCategories(sortCriteria, categoriesArray){

@@ -5,6 +5,17 @@
   font-family: Arial, sans-serif;
 }
 
+.row {
+  margin-right: 0;
+  margin-left: 0;
+}
+
+@media (min-width: 992px) {
+  .container{
+      max-width: 100%;
+  }
+}
+
 .jumbotron .display-4 {
   font-weight: bold;
 }
