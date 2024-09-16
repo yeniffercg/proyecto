@@ -1,27 +1,13 @@
-/*document.addEventListener("DOMContentLoaded", function(){
-
-    getJSONData(PRODUCTS_URL).then(function(resultado){
-
-        if(resultado.status = 'ok'){
-            console.log(resultado.data);
-            mostrarProductos(resultado.data.products);
-        }
-    })
-})*/
-
 document.addEventListener("DOMContentLoaded", function() {
     const catID = localStorage.getItem("catID");
 
     const url = `https://japceibal.github.io/emercado-api/cats_products/${catID}.json`;
 
     getJSONData(url).then(function(resultado) {
-        let p = resultado.data;
         if (resultado.status === 'ok') {
-            console.log(p);
-            mostrarProductos(p);
-            productosArray = resultado.data.products;
-            mostrarProductos(productosArray);
-            habilitarFiltro(productosArray); 
+            console.log(resultado.data);
+            mostrarProductos(resultado.data);
+            habilitarFiltro(resultado.data.products); 
         } else {
             console.error("Error al obtener los datos:", resultado.status);
         }
@@ -65,19 +51,17 @@ function productos(array) {
 
 function habilitarFiltro(productosArray) {
      buscarInput = document.getElementById("buscarInput");
-     valores = document.getElementById("valores");
      productosContainer = document.getElementById("productos");
 
     buscarInput.addEventListener("input", function(e) {
         searchValue = e.target.value.toLowerCase();
-        valores.textContent = searchValue;
-         productosFiltrados = productosArray.filter(producto => {
+        productosFiltrados = productosArray.filter(producto => {
              titulo = producto.name.toLowerCase();
              descripcion = producto.description.toLowerCase();
             return titulo.includes(searchValue) || descripcion.includes(searchValue);
         });
 
         productosContainer.innerHTML = ""; 
-        mostrarProductos(productosFiltrados); 
+        productos(productosFiltrados); 
     });
 }
