@@ -20,7 +20,14 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 });
 
-function mostrarProductos(array) {
+function mostrarProductos(p) {
+    let cat = document.getElementById("category");
+    cat.innerHTML += `<a href="index.html" class="text-decoration-none">Inicio</a> > <a href="products.html" class="text-decoration-none">${p.catName}</a>`;
+    
+    productos(p.products)
+}
+
+function productos(array) {
     let mostrar = document.getElementById("productos");
     mostrar.innerHTML = "";
     array.forEach((element) => {
