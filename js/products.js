@@ -9,8 +9,7 @@ document.addEventListener("DOMContentLoaded", function() {
     getJSONData(url).then(function(resultado) {
         if (resultado.status === 'ok') {
             console.log(resultado.data);
-            products = resultado.data.products
-            mostrarProductos(resultado.data);
+            productos(resultado.data.products);
             habilitarFiltro(resultado.data.products); 
         } else {
             console.error("Error al obtener los datos:", resultado.status);
@@ -20,33 +19,26 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 });
 
-function mostrarProductos(p) {
-    let cat = document.getElementById("category");
-    cat.innerHTML += `<a href="index.html" class="text-decoration-none">Inicio</a> > <a href="products.html" class="text-decoration-none">${p.catName}</a>`;
-    
-    productos(p.products)
-}
-
 function productos(array) {
     let mostrar = document.getElementById("productos");
     mostrar.innerHTML = "";
     array.forEach((element) => {
-        costo.push(element.cost)
-        mostrar.innerHTML += `
-            <div onclick="setProdID(${element.id})" class="col mb-4">
-                <div class="card h-100 ">
-                    <img src="${element.image}" class="card-img-top" alt="${element.name}">
-                    <div class="card-body">
-                        <h5 class="card-title fw-bold">${element.name}</h5>
-                        <p class="card-text">${element.description}</p>
-                        <h5 class="card-text fw-bold">${element.currency} ${element.cost}</h5>
-                        <p class="card-text text-muted">${element.soldCount} productos vendidos</p>
+            costo.push(element.cost)
+            mostrar.innerHTML += `
+                <div onclick="setProdID(${element.id})" class="col mb-4">
+                    <div class="card h-100 ">
+                        <img src="${element.image}" class="card-img-top" alt="${element.name}">
+                        <div class="card-body">
+                            <h5 class="card-title fw-bold">${element.name}</h5>
+                            <p class="card-text">${element.description}</p>
+                            <h5 class="card-text fw-bold">${element.currency} ${element.cost}</h5>
+                            <p class="card-text text-muted">${element.soldCount} productos vendidos</p>
+                        </div>
                     </div>
                 </div>
-            </div>
-        `;
-    });
-}
+            `;
+        })
+    }
 
 function habilitarFiltro(productosArray) {
      buscarInput = document.getElementById("buscarInput");
@@ -187,6 +179,7 @@ document.addEventListener("DOMContentLoaded", function(){
 
         minCount = undefined;
         maxCount = undefined;
+        productos(products);
 
         showPricesList();
     });

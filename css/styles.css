@@ -257,6 +257,10 @@ a.custom-card:hover {
   float: right;
 }
 
+.not-checked {
+  color:#bebebe
+}
+
 @media (max-width: 500px) {
   #cajaimg {
     display: none;

@@ -13,7 +13,7 @@
 </head>
 
 <body>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-1">
+  <nav class="navbar navbar-expand-lg navbar-light p-1" style="background-color: #dc95d8;">
     <div class="container">
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
         aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -38,9 +38,7 @@
     </div>
   </nav>
   
-  <main class="pb-5 container">
-    <div id="category" class="m-4">
-    </div>
+  <main class="py-4 container">
     <div class="container">
       <div class="row">
         <div class="col text-end">
@@ -56,7 +54,7 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-lg-6 offset-lg-6 col-md-12 mb-1 container">
+        <div class="text-end col-lg-6 offset-lg-6 col-md-12 mb-1 container">
           <div class="row container p-0 m-0">
             <div class="col">
               <p class="font-weight-normal text-end my-2">Precio</p>
@@ -70,7 +68,7 @@
             <div class="col-3 p-0">
               <div class="btn-group" role="group">
                 <button class="btn btn-light btn-block" id="rangeFilterCount">Filtrar</button>
-                <button class="btn btn-link btn-sm" id="clearRangeFilter">Limpiar</button>
+                <button class="btn btn-secondary" id="clearRangeFilter">Limpiar</button>
               </div>
             </div>
           </div>
@@ -80,7 +78,9 @@
       <div class="list-group" id="price-list-container">
       </div>
     </div>
-    <div id="productos" class="row row-cols-1 row-cols-md-4 mt-4">
+    <div id="anuncio">
+      <div id="productos" class="row row-cols-1 row-cols-md-4 mt-4">
+      </div>
     </div>
   </main>
   <footer class="text-muted">
