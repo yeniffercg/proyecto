@@ -7,6 +7,8 @@ document.addEventListener("DOMContentLoaded", function() {
         if (resultado.status === 'ok') {
             console.log(resultado.data);
             mostrarProducto(resultado.data);
+            productosRelacionados(resultado.data.relatedProducts);
+
         } else {
             console.error("Error al obtener los datos:", resultado.status);
         }
@@ -50,4 +52,19 @@ function imagenes(array) {
     });
 }
 
-
+function productosRelacionados(array) {
+    let mostrar = document.getElementById("productosRelacionados");
+    mostrar.innerHTML = "";
+    array.forEach((element) => {
+        mostrar.innerHTML += `
+            <div onclick="setProdID(${element.id})" class="col mb-4">
+                <div class="card w-50">
+                    <img src="${element.image}" class="card-img-top" alt="${element.name}">
+                    <div class="card-body">
+                        <h6 class="card-title fw-bold">${element.name}</h5>
+                    </div>
+                </div>
+            </div>
+        `;
+    });
+}
