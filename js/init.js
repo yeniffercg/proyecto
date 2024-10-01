@@ -39,3 +39,9 @@ let getJSONData = function(url){
         return result;
     });
 }
+
+const userEmail = localStorage.getItem('userEmail');
+
+if (userEmail) {
+  document.getElementById('userEmail').textContent = userEmail;
+}

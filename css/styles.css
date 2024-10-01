@@ -2,15 +2,11 @@
 .card-body,
 .container,
 .site-header {
-  font-family: Arial, sans-serif;
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .jumbotron .display-4 {
   font-weight: bold;
-}
-
-nav a {
-  text-decoration: none;
 }
 
 .bd-placeholder-img {
@@ -89,6 +85,20 @@ footer a {
   color: black;
 }
 
+.navbar-light .navbar-nav .nav-link {
+  color: #ffdffd;
+  font-weight: normal;
+}
+
+.navbar-light .navbar-nav .nav-link.active, .navbar-light .navbar-nav .show>.nav-link {
+  color: #fff3fe;
+  font-weight: bold;
+}
+
+.navbar-light .navbar-nav .nav-link:focus, .navbar-light .navbar-nav .nav-link:hover {
+  color: #fff3fe;
+}
+
 .dropzone {
   border: 2px dashed #0087F7;
   border-radius: 5px;
@@ -97,14 +107,6 @@ footer a {
 
 .img-fit {
   max-height: 100%;
-}
-
-.alert {
-  position: fixed;
-  top: 80px;
-  width: 50%;
-  left: 50%;
-  transform: translate(-50%, 0);
 }
 
 .lds-ring {
@@ -181,6 +183,7 @@ footer a {
 
 main {
   min-height: calc(100vh - 210px);
+  background-color: #fff;
 }
 
 a.custom-card,
@@ -193,37 +196,135 @@ a.custom-card:hover {
   color: orange;
 }
 
-/*login*/
-.container{
-  text-align: left;
+#imgecom {
+  width: 100%;
+}
+
+.cajas {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-end;
+}
+
+.caja {
+  width: 20%;
+  height: auto;
+}
+
+#cajaimg {
+  margin-left: 10%;
+  width: 80%;
+  align-self: center;
+}
+
+#cajalog {
+  margin: 0% 10%;
+  width: 40%;
+  align-self: center;
 }
 
 #imagenlogo{ 
-  width: 90px;
+  display: block;
+  width: 100%;
+  margin: auto;
 }
 
-#usuario {
+#email {
   background-color: #ECBEEB;
-  width: 50%;
-  padding: 5px, 5px;
-  margin: 20px 0px;
+  width: 100%;
+  padding: 5px 5px;
   border-radius: 3px;
-  
+  border: 1px solid #9D4D99;
 }
 
 #contr {
   background-color: #ECBEEB;
-  width: 50%;
-  padding: 5px, 5px;
+  width: 100%;
+  padding: 5px 5px;
   border-radius: 3px;
+  border: 1px solid #9D4D99;
 }
-
 
 #botonIngreso {
   color: #fff;
-  border: 1px solid hsl(194, 28%, 31%);
-  background-color: hsl(194, 28%, 31%);
+  border: 3px solid #395b65;
+  background-color: #395b65;
   border-radius: 3px;
-  width: 50%;
-  margin-left: 5px;
+  width: 100%;
+}
+
+#cajalog a {
+  text-decoration: none;
+  color: #395b65;
+  float: right;
+}
+
+.not-checked {
+  color:#bebebe
+}
+
+@media (max-width: 500px) {
+  #cajaimg {
+    display: none;
+  }
+  .cajas {
+    display: block;
+  }
+  .caja {
+    width: auto;
+  }
+  #cajalog {
+    width: auto;
+  }
+  .container, .container-fluid, .container-lg, .container-md, .container-sm, .container-xl, .container-xxl {
+    width: 100%;
+    margin: 0%
+  }
+  body {
+    margin: 0 auto;
+  }
+  .jumbotron {
+    background-size: contain;
+    background-position: top;
+    height: 100px;
+    background-color: #f8f9fa
+  }
+  .mt-5 {
+    margin-top: 3rem !important;
+    margin-bottom: 3rem;
+  }
+}
+/*Comentarios*/
+
+#comentarioBox{
+padding: 2%;
+width: 67%;
+font-size: 150%;
+font-family: Arial, Helvetica, sans-serif;
+}
+
+label{
+  text-align: left;
+  justify-content: space-between;
+  width: 67%;
+  display: flex; 
+  margin-bottom: 10px;
+}
+
+.estrella{
+
+  float: right;
+  font-size: 25px;
+  padding: 5px;
+  color: #D88AD4;
+}
+
+#enviar{ 
+  margin-left: 58%;
+  padding: 10px 35px;
+  border-radius: 5%;
+  color: white;
+  background-color: #D88AD4;
+  border: none;
 }

@@ -43,6 +43,12 @@ function setCatID(id) {
 function showCategoriesList(){
 
     let htmlContentToAppend = "";
+    if (currentCategoriesArray.length === 0) {
+        htmlContentToAppend += `<div class="text-center p-4">
+                                    <p class="lead">Todavía no hay productos en esta categoría.</p>
+                                </div>`
+    } else {
+
     for(let i = 0; i < currentCategoriesArray.length; i++){
         let category = currentCategoriesArray[i];
 
@@ -69,6 +75,7 @@ function showCategoriesList(){
 
         document.getElementById("cat-list-container").innerHTML = htmlContentToAppend;
     }
+}
 }
 
 function sortAndShowCategories(sortCriteria, categoriesArray){
@@ -119,8 +126,6 @@ document.addEventListener("DOMContentLoaded", function(e){
     });
 
     document.getElementById("rangeFilterCount").addEventListener("click", function(){
-        //Obtengo el mínimo y máximo de los intervalos para filtrar por cantidad
-        //de productos por categoría.
         minCount = document.getElementById("rangeFilterCountMin").value;
         maxCount = document.getElementById("rangeFilterCountMax").value;
 
