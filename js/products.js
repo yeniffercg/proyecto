@@ -164,9 +164,9 @@ document.addEventListener("DOMContentLoaded", function(){
         minCount = undefined;
         maxCount = undefined;
         mostrarProductos(arrProducts);
+        products = arrProducts;
         showPricesList();
     });
-
 
     //Filtrar
     document.getElementById("rangeFilterCount").addEventListener("click", function(){        
