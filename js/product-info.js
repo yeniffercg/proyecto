@@ -52,6 +52,11 @@ function imagenes(array) {
     });
 }
 
+function setProdID(id) {
+    localStorage.setItem("relacionados", id);
+    window.location = "product-info.html"
+}
+
 function productosRelacionados(array) {
     let mostrar = document.getElementById("productosRelacionados");
     mostrar.innerHTML = "";
