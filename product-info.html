@@ -38,34 +38,37 @@
     </div>
   </nav>
   <main>
-    <div id="category" class="m-4">
-    </div>
-    <div class="container row w-100">
-      <div id="imgleft" class="ms-2 me-4 rounded border border-muted bg-light" style="width: 15%;">
+    <div class="container">
+      <div id="category">
       </div>
-      <div id="carouselExampleIndicators" class="carousel carousel-dark slide col-4 rounded border border-muted w-50 bg-light" data-bs-ride="carousel">
-        <div class="carousel-indicators">
-            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
-            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3" aria-label="Slide 4"></button>
+      <div class="d-flex justify-content-between">
+        <div id="imgleft" class="rounded border border-muted col-1 h-100 px-2">
         </div>
-        <div id="imgcarrusel" class="carousel-inner">
+        <div id="carouselExampleIndicators" class="carousel carousel-dark slide rounded border border-muted col-6 h-100 px-3" data-bs-ride="carousel">
+          <div class="carousel-indicators">
+              <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+              <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+              <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+              <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3" aria-label="Slide 4"></button>
+          </div>
+          <div id="imgcarrusel" class="carousel-inner">
+          </div>
+          <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Previous</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Next</span>
+          </button>
         </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-        </button>
+        <div id="descripcion" class="p-4 rounded border border-muted col-4 h-100">
+          <p id="califProd" class="fs-5 mb-1"></p>
+        </div>
       </div>
-      <div id="descripcion" class="p-4 ms-4 col-4 rounded border border-muted bg-light" style="width: 30%;">
+      <div id="comentarios" class="row">
+        <h3 class="fw-bold mt-4">Calificaciones del producto<span class="fs-4 float-end align-bottom fw-normal" id="secComent"></span></span></h3>
       </div>
-    </div>
-    <div id="comentarios" class="row m-4">
-      <h3 class="fw-bold mt-4">Calificaciones del producto</h3>
     </div>
   </main>
   <footer class="text-muted">

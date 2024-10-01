@@ -1,5 +1,6 @@
-let costo = [];
+let cost = [];
 let products = [];
+let arrProducts =[];
 
 document.addEventListener("DOMContentLoaded", function() {
     const catID = localStorage.getItem("catID");
@@ -9,8 +10,10 @@ document.addEventListener("DOMContentLoaded", function() {
     getJSONData(url).then(function(resultado) {
         if (resultado.status === 'ok') {
             console.log(resultado.data);
-            productos(resultado.data.products);
-            habilitarFiltro(resultado.data.products); 
+            products = resultado.data.products;
+            arrProducts = resultado.data.products;
+            mostrarProductos(products);
+            habilitarFiltro(products); 
         } else {
             console.error("Error al obtener los datos:", resultado.status);
         }
@@ -19,11 +22,11 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 });
 
-function productos(array) {
+function mostrarProductos(array) {
     let mostrar = document.getElementById("productos");
     mostrar.innerHTML = "";
     array.forEach((element) => {
-            costo.push(element.cost)
+            cost.push(element.cost);
             mostrar.innerHTML += `
                 <div onclick="setProdID(${element.id})" class="col mb-4">
                     <div class="card h-100 ">
@@ -40,20 +43,20 @@ function productos(array) {
         })
     }
 
-function habilitarFiltro(productosArray) {
+function habilitarFiltro(array) {
      buscarInput = document.getElementById("buscarInput");
      productosContainer = document.getElementById("productos");
 
     buscarInput.addEventListener("input", function(e) {
         searchValue = e.target.value.toLowerCase();
-        productosFiltrados = productosArray.filter(producto => {
+        productosFiltrados = array.filter(producto => {
              titulo = producto.name.toLowerCase();
              descripcion = producto.description.toLowerCase();
             return titulo.includes(searchValue) || descripcion.includes(searchValue);
         });
 
         productosContainer.innerHTML = ""; 
-        productos(productosFiltrados); 
+        mostrarProductos(productosFiltrados); 
     });
 }
 
@@ -67,18 +70,14 @@ let minCount = undefined;
 let maxCount = undefined;
 
 function sortProducts(criteria, array){
-    
     let result = [];
-    if (criteria === ORDER_ASC_BY_PRICE)
-    { 
+
+    if (criteria === ORDER_ASC_BY_PRICE){ 
        result = array.sort(function(a, b) {
-          
             if ( a.cost < b.cost ){ return -1; }
             if ( a.cost > b.cost ){ return 1; }
             return 0;
-            
         });
-
     }else if (criteria === ORDER_DESC_BY_PRICE){
         result = array.sort(function(a, b) {
           
@@ -86,9 +85,7 @@ function sortProducts(criteria, array){
             if ( (a).cost < (b).cost ){ return 1; }
             return 0;
         });
-
     }else if (criteria === ORDER_BY_PROD_COUNT){
-
         result = array.sort(function(a, b) {
             let aCount = (a.soldCount);
             let bCount = (b.soldCount);
@@ -98,8 +95,7 @@ function sortProducts(criteria, array){
             return 0;
         });
     }
-    
-    productos(result);
+    mostrarProductos(result);
 }
 
 function setProdID(id) {
@@ -112,7 +108,6 @@ function showPricesList(){
     let htmlContentToAppend = "";
     for(let i = 0; i < currentPricesArray.length; i++){
         let cost = currentPricesArray[cost]; 
-
 
         if (((minCount == undefined) || (minCount != undefined && (products.cost) >= minCount)) &&
             ((maxCount == undefined) || (maxCount != undefined && (products.cost) <= maxCount))){
@@ -131,10 +126,8 @@ function showPricesList(){
                         <p class="mb-1">${element.description}</p>
                     </div>
                 </div>
-            </div>
-            `
+            </div>`
         }
-
         document.getElementById("price-list-container").innerHTML = htmlContentToAppend;
     }
 }
@@ -145,32 +138,23 @@ function sortAndShowProducts(sortCriteria, pricesArray){
     if(pricesArray != undefined){
         currentPricesArray = pricesArray;
     }
-
     currentPricesArray = sortPrices(currentSortCriteria, currentPricesArray);
-
-    
     showPricesList();
 }
 
 document.addEventListener("DOMContentLoaded", function(){
 
     document.getElementById("sortAsc").addEventListener("click", function(){
-        
         sortProducts('ascendente', products)
-        
     });
 
     document.getElementById("sortDesc").addEventListener("click", function(){
-        
         sortProducts('descendente', products)
     });
 
     document.getElementById("sortByCount").addEventListener("click", function(){
         sortProducts('relevancia', products)
-        
     });
-
-
 
     //Limpiar
     document.getElementById("clearRangeFilter").addEventListener("click", function(){
@@ -179,8 +163,7 @@ document.addEventListener("DOMContentLoaded", function(){
 
         minCount = undefined;
         maxCount = undefined;
-        productos(products);
-
+        mostrarProductos(arrProducts);
         showPricesList();
     });
 
@@ -190,27 +173,28 @@ document.addEventListener("DOMContentLoaded", function(){
         minCount = document.getElementById("rangeFilterCountMin").value;
         maxCount = document.getElementById("rangeFilterCountMax").value;
 
-        console.log(minCount);
+        if(minCount === '' && maxCount === ''){
+           mostrarProductos(arrProducts);
+        }
         if (minCount !== '') {
-        
             const minFiltered = products.filter((product) => product.cost >= minCount);
-            productos(minFiltered);
+            products = minFiltered;
+            mostrarProductos(minFiltered);
             console.log('minResult', minFiltered);
         }
         if(maxCount !== ''){
-            const maxFiltered = products.filter((product) => product.cost <= maxCount)
-            productos(maxFiltered)
-            console.log('maxResult ', maxFiltered)
+            const maxFiltered = products.filter((product) => product.cost <= maxCount);
+            products = maxFiltered;
+            mostrarProductos(maxFiltered);
+            console.log('maxResult ', maxFiltered);
         }
         if(minCount !== '' && maxCount !== '') {
             const rangeFiltered = products.filter((product) => product.cost >= minCount && product.cost <= maxCount);
-            productos(rangeFiltered);
+            products = rangeFiltered;
+            mostrarProductos(rangeFiltered);
             console.log('range', rangeFiltered);
         }
-        if(minCount === '' && maxCount === ''){
-           productos(products)
-        }
-
         showPricesList();
     });
 });
+console.log(products, cost)

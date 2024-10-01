@@ -16,8 +16,9 @@ document.addEventListener("DOMContentLoaded", function() {
 
     getJSONData(urlCom).then(function(resultado) {
         if (resultado.status === 'ok') {
-            console.log(resultado.data);
-            comentarios(resultado.data);
+            const comentariosArr = resultado.data;
+            console.log(comentariosArr);
+            comentarios(comentariosArr);
         } else {
             console.error("Error al obtener los datos:", resultado.status);
         }
@@ -28,26 +29,30 @@ document.addEventListener("DOMContentLoaded", function() {
 
 function mostrarProducto(p) {
     let cat = document.getElementById("category");
-    let des = document.getElementById("descripcion");
+    let des = document.getElementById("descripcion"); 
 
     cat.innerHTML += `<nav style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='currentColor'/%3E%3C/svg%3E&#34;);" aria-label="breadcrumb">
-                        <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="index.html" class="ms-2 text-decoration-none">Inicio</a></li>
-                            <li class="breadcrumb-item active" aria-current="page"><a href="products.html" class="text-decoration-none">${p.category}</a></li>
+                        <ol class="breadcrumb mt-3">
+                            <li class="breadcrumb-item"><a href="index.html" class="text-decoration-none text-muted">Inicio</a></li>
+                            <li class="breadcrumb-item active" aria-current="page"><a href="products.html" class="text-decoration-none text-reset">${p.category}</a></li>
                         </ol>
                     </nav>`;
 
     imagenes(p.images);
-
+      
     des.innerHTML += `<h1 class="fw-bold fs-1 mb-4">${p.name}</h1>
-                    <p class="fs-5 mb-4">${p.description}</p>
-                    <p class="fw-bold fs-2 mb-5">${p.currency} ${p.cost}</p>
-                    <p class="text-muted fs-6">${p.soldCount} productos vendidos.</p>`
+                    <p class="fs-5 mb-3">${p.description}</p>
+                    <p class="fw-bold fs-2 mb-2">${p.currency} ${p.cost}</p>
+                    <p class="text-muted fs-6 mb-0">${p.soldCount} productos vendidos.</p>`
 }
 
 function imagenes(array) {
     let carrusel = document.getElementById("imgcarrusel");
     let left = document.getElementById("imgleft");
+    
+    array.forEach((element) => {
+        left.innerHTML += `<img src="${element}" class="w-100 my-2 rounded">`
+    });
     array.forEach((element) => {
         if (element === array[0]){
             carrusel.innerHTML += `
@@ -60,12 +65,11 @@ function imagenes(array) {
             <img src="${element}" class="d-block w-100 my-3 rounded" alt="">
             </div>`}
     });
-    array.forEach((element) => {
-        left.innerHTML += `<img src="${element}" class="w-100 my-2 rounded">`
-    });
 }
 
 function comentarios(array) {
+    calificacionesPromedio(array, "secComent");
+    calificacionesPromedio(array, "califProd");
     if(array.length == 0) {
         document.getElementById("comentarios").innerHTML += `<p class="text-muted fs-5">Aún no hay comentarios sobre este producto.</p>`
     } else {
@@ -87,4 +91,23 @@ function comentarios(array) {
 
 function estrellas(score) {
     return '<span class="fa fa-star checked"></span>'.repeat(score) + '<span class="fa fa-star not-checked"></span>'.repeat(5 - score);
+}
+
+function calificacionesPromedio(array, id) {
+    numCalif = array.length;
+    totalCalif = 0;
+    promedioCalif = 0;
+
+    if(numCalif == 0) {
+        document.getElementById(id).innerHTML += `<span class="text-muted fs-5 float-end fw-normal">Aún no hay calificaciones.</span>`
+    } else {
+        array.forEach((calif) => {
+            totalCalif += calif.score;
+        })
+        promedioCalif = Math.floor(totalCalif / numCalif);
+        console.log(promedioCalif);
+
+        document.getElementById(id).innerHTML += `
+            ${promedioCalif} ${estrellas(promedioCalif)} <span class="text-muted">(${numCalif})</span>`
+    }
 }
