@@ -193,7 +193,7 @@ a.custom-card:hover {
 }
 
 .checked {
-  color: orange;
+  color: gold;
 }
 
 #imgecom {
@@ -312,12 +312,14 @@ label{
   margin-bottom: 10px;
 }
 
-.estrella{
+.estrella {
+  font-size: 2rem;
+  color: #ccc;
+  cursor: pointer;
+}
 
-  float: right;
-  font-size: 25px;
-  padding: 5px;
-  color: #D88AD4;
+.estrella.checked {
+  color: gold;
 }
 
 #enviar{ 

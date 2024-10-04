@@ -137,3 +137,66 @@ function productosRelacionados(array) {
         `;
     });
 }
+
+document.querySelectorAll(".estrella").forEach((estrella) => {
+    estrella.addEventListener("click", function() {
+        const valor = parseInt(this.getAttribute("data-value"));
+
+        document.querySelectorAll(".estrella").forEach((s, index) => {
+            s.classList.remove("checked");
+            });
+
+        document.querySelectorAll(".estrella").forEach((s, index) => {
+            if (index < valor) {
+                s.classList.add("checked");
+                }
+            });
+        });
+});
+
+document.getElementById("enviar").addEventListener("click", function() {
+    let nuevoComentario = {
+        user: "Usuario actual", 
+        score: contarEstrellasSeleccionadas(),
+        description: document.getElementById("comentarioBox").value,
+        dateTime: new Date().toISOString().slice(0, 19).replace('T', ' ')
+        };
+        agregarComentario(nuevoComentario);
+        recalcularPromedio(nuevoComentario.score);
+    });
+
+function contarEstrellasSeleccionadas() {
+    return document.querySelectorAll(".estrella.checked").length;
+}
+
+function agregarComentario(comentario) {
+    document.getElementById("comentarios").innerHTML += `
+    <div class="col-sm-6 mt-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">${comentario.user}
+                <span class="float-end">${estrellas(comentario.score)}</span></h5>
+                <p class="card-text">${comentario.description}</p>
+                <p class="card-text text-muted">${comentario.dateTime}</p>
+            </div>
+        </div>
+    </div>`;
+}
+
+function recalcularPromedio(nuevaCalificacion) {
+    let totalCalificaciones = 0;
+    let numCalificaciones = 0;
+
+    document.querySelectorAll("#comentarios .card-title .float-end").forEach((element) => {
+        const score = parseInt(element.textContent);
+        totalCalificaciones += score;
+        numCalificaciones++;
+    });
+
+    totalCalificaciones += nuevaCalificacion;
+    numCalificaciones++;
+
+    nuevoPromedio = Math.floor(totalCalificaciones / numCalificaciones);
+    document.getElementById("secComent").innerHTML = `
+        ${nuevoPromedio} ${estrellas(nuevoPromedio)} <span class="text-muted">(${numCalificaciones})</span>`;
+}
