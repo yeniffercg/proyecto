@@ -32,7 +32,7 @@
             <a class="nav-link" href="sell.html">Vender</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" id="userEmail"></a>
+            <a class="nav-link" id="userTop"></a>
           </li>
         </ul>
       </div>
@@ -67,24 +67,24 @@
           <p id="califProd" class="fs-5 mb-1"></p>
         </div>
       </div>
-      <div id="comentar">
-        <label>
-          <h3 class="fw-bold mt-4">Califica este producto<span class="fs-4 float-end align-bottom fw-normal"></h3>
-          <i class="bi bi-star-fill estrella" data-value="1"></i>
-          <i class="bi bi-star-fill estrella" data-value="2"></i>
-          <i class="bi bi-star-fill estrella" data-value="3"></i>
-          <i class="bi bi-star-fill estrella" data-value="4"></i>
-          <i class="bi bi-star-fill estrella" data-value="5"></i>
-      </label>
-      <input placeholder="Escribir comentario sobre el producto..." type="text" id="comentarioBox">
-      <button id="enviar">Enviar</button>
-        </pre>
+      <div id="comentar" class="mt-5">
+        <h3 class="fw-bold">Califica este producto<span class="fs-3 float-end">
+        <i class="fa fa-star estrella" data-value="1"></i>
+        <i class="fa fa-star estrella" data-value="2"></i>
+        <i class="fa fa-star estrella" data-value="3"></i>
+        <i class="fa fa-star estrella" data-value="4"></i>
+        <i class="fa fa-star estrella" data-value="5"></i></span></h3>
+        <input placeholder="Escribir comentario sobre el producto..." type="text" class="fs-6 w-100 border border-muted rounded my-2" id="comentarioBox">
+        <div class="d-flex justify-content-end">
+          <div id="alertaCom" class="alert alert-danger m-2 p-2" style="display: none;" role="alert">Debes escribir un comentario para calificar el producto.</div>
+          <button class="my-2" id="enviar">Enviar</button>
         </div>
-      <div id="comentarios" class="row">
-        <h3 class="fw-bold mt-4">Calificaciones del producto<span class="fs-4 float-end align-bottom fw-normal" id="secComent"></span></span></h3>
       </div>
-      <div id="productos" class="row"></div>
-        <h3 class="fw-bold mt-4">También te podría interesar</h3>
+      <div id="comentarios" class="row">
+        <h3 class="fw-bold mt-5">Calificaciones del producto<span class="fs-4 float-end align-bottom fw-normal" id="secComent"></span></h3>
+      </div>
+      <div id="productos" class="row mt-4"></div>
+        <h3 class="fw-bold mt-5">También te podría interesar</h3>
         <div id="productosRelacionados" class="row row-cols-1 row-cols-md-4 mt-4"></div>
       </div>
      

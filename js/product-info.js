@@ -79,12 +79,12 @@ function comentarios(array) {
             document.getElementById("comentarios").innerHTML += `
             <div class="col-sm-6 mt-4">
                 <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">${comentario.user}
-                    <span class="float-end">${estrellas(comentario.score)}</span></h5>
-                    <p class="card-text">${comentario.description}</p>
-                    <p class="card-text text-muted">${comentario.dateTime}</p>
-                </div>
+                    <div class="card-body">
+                        <h5 class="card-title">${comentario.user}
+                        <span class="float-end score" data-score="${comentario.score}">${estrellas(comentario.score)}</span></h5>
+                        <p class="card-text">${comentario.description}</p>
+                        <p class="card-text text-muted">${comentario.dateTime}</p>
+                    </div>
                 </div>
             </div>`
         })
@@ -107,13 +107,11 @@ function calificacionesPromedio(array, id) {
             totalCalif += calif.score;
         })
         promedioCalif = Math.floor(totalCalif / numCalif);
-        console.log(promedioCalif);
 
         document.getElementById(id).innerHTML += `
             ${promedioCalif} ${estrellas(promedioCalif)} <span class="text-muted">(${numCalif})</span>`
     }
 }
-
 
 function setProdID(id) {
     localStorage.setItem("prodID", id);
@@ -122,12 +120,11 @@ function setProdID(id) {
 
 function productosRelacionados(array) {
     let mostrar = document.getElementById("productosRelacionados");
-    console.log(productosRelacionados);
     mostrar.innerHTML = "";
     array.forEach((element) => {
         mostrar.innerHTML += `
             <div onclick="setProdID(${element.id})" class="col mb-4">
-                <div class="card h-50 ">
+                <div class="card h-100">
                     <img src="${element.image}" class="card-img-top" alt="${element.name}">
                     <div class="card-body">
                         <h5 class="card-title fw-bold">${element.name}</h5>
@@ -141,29 +138,42 @@ function productosRelacionados(array) {
 document.querySelectorAll(".estrella").forEach((estrella) => {
     estrella.addEventListener("click", function() {
         const valor = parseInt(this.getAttribute("data-value"));
+        const estrellasCheck = document.querySelectorAll(".estrella.checked");
 
-        document.querySelectorAll(".estrella").forEach((s, index) => {
-            s.classList.remove("checked");
+        if(estrellasCheck.length > 0 && estrellasCheck[estrellasCheck.length - 1] === this) {
+            document.querySelectorAll(".estrella").forEach((s, index) => {
+                s.classList.remove("checked");
             });
-
-        document.querySelectorAll(".estrella").forEach((s, index) => {
-            if (index < valor) {
-                s.classList.add("checked");
+        } else {
+            document.querySelectorAll(".estrella").forEach((s) => {
+                s.classList.remove("checked");
+            });
+            document.querySelectorAll(".estrella").forEach((s, index) => {
+                if (index < valor) {
+                    s.classList.add("checked");
                 }
             });
-        });
+        }
+    });
 });
 
 document.getElementById("enviar").addEventListener("click", function() {
-    let nuevoComentario = {
-        user: "Usuario actual", 
-        score: contarEstrellasSeleccionadas(),
-        description: document.getElementById("comentarioBox").value,
-        dateTime: new Date().toISOString().slice(0, 19).replace('T', ' ')
-        };
-        agregarComentario(nuevoComentario);
-        recalcularPromedio(nuevoComentario.score);
-    });
+    comBox = document.getElementById("comentarioBox").value;
+    alert = document.getElementById("alertaCom");
+    if(comBox !== '') {
+        alert.style.display = "none";
+        let nuevoComentario = {
+            user: localStorage.getItem('user'),
+            score: contarEstrellasSeleccionadas(),
+            description: document.getElementById("comentarioBox").value,
+            dateTime: new Date().toISOString().slice(0, 19).replace('T', ' ')
+            };
+            agregarComentario(nuevoComentario);
+            recalcularPromedio(nuevoComentario.score);
+    } else {
+        alert.style.display = "block";
+    }
+});
 
 function contarEstrellasSeleccionadas() {
     return document.querySelectorAll(".estrella.checked").length;
@@ -175,7 +185,7 @@ function agregarComentario(comentario) {
         <div class="card">
             <div class="card-body">
                 <h5 class="card-title">${comentario.user}
-                <span class="float-end">${estrellas(comentario.score)}</span></h5>
+                <span class="float-end score" data-score="${comentario.score}">${estrellas(comentario.score)}</span></h5>
                 <p class="card-text">${comentario.description}</p>
                 <p class="card-text text-muted">${comentario.dateTime}</p>
             </div>
@@ -183,20 +193,20 @@ function agregarComentario(comentario) {
     </div>`;
 }
 
-function recalcularPromedio(nuevaCalificacion) {
-    let totalCalificaciones = 0;
-    let numCalificaciones = 0;
+function recalcularPromedio(nuevaCalif) {
+    let totalCalif = nuevaCalif;
+    let numCalif = 0;
 
-    document.querySelectorAll("#comentarios .card-title .float-end").forEach((element) => {
-        const score = parseInt(element.textContent);
-        totalCalificaciones += score;
-        numCalificaciones++;
+    document.querySelectorAll(".score").forEach((element) => {
+        const scoreText = element.getAttribute('data-score');
+        if (scoreText) {
+            totalCalif += parseInt(scoreText);
+            numCalif++;
+        }
     });
-
-    totalCalificaciones += nuevaCalificacion;
-    numCalificaciones++;
-
-    nuevoPromedio = Math.floor(totalCalificaciones / numCalificaciones);
+    let nuevoPromedio = Math.floor(totalCalif / numCalif);
     document.getElementById("secComent").innerHTML = `
-        ${nuevoPromedio} ${estrellas(nuevoPromedio)} <span class="text-muted">(${numCalificaciones})</span>`;
+        ${nuevoPromedio} ${estrellas(nuevoPromedio)} <span class="text-muted">(${numCalif})</span>`;
+    document.getElementById("califProd").innerHTML = `
+        ${nuevoPromedio} ${estrellas(nuevoPromedio)} <span class="text-muted">(${numCalif})</span>`;
 }

@@ -1,11 +1,11 @@
 document.getElementById("login").addEventListener("submit", function(event){
     event.preventDefault();
-    const email = document.getElementById("email").value;
+    const user = document.getElementById("user").value;
     const contraseña = document.getElementById("contr");
 
-    if (email.value !== "" && contraseña.value !== ""){
+    if (user.value !== "" && contraseña.value !== ""){
      localStorage.setItem("loggedIn", "true");
-     localStorage.setItem("userEmail", email);
+     localStorage.setItem("user", user);
     window.location.href = "index.html";
     }
 })
