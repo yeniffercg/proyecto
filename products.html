@@ -42,19 +42,17 @@
     <div class="container">
       <div class="row">
         <div class="col text-end">
-          <div class="mb-4">
-            <div class="btn-group btn-group-toggle" data-bs-toggle="buttons">
-              <div class="bg-light rounded pe-2 me-3">
-                <input class="border rounded-start border-muted px-3 py-2" type="search" id="buscarInput" placeholder="Buscar productos">
-                <i class="ms-2 me-1 fa fa-search"></i>
-              </div>
-              <input type="radio" class="btn-check" name="options" id="sortAsc">
-              <label class="btn btn-light rounded" for="sortAsc"><i class="fas fa-sort-amount-up mr-1"></i>$</label>
-              <input type="radio" class="btn-check" name="options" id="sortDesc">
-              <label class="btn btn-light" for="sortDesc"><i class="fas fa-sort-amount-down mr-1"></i>$</label>
-              <input type="radio" class="btn-check" name="options" id="sortByCount" checked>
-              <label class="btn btn-light" for="sortByCount"><i class="fas fa-sort-amount-down mr-1"></i>Rel</label>
+          <div class="btn-group btn-group-toggle mb-4" data-bs-toggle="buttons">
+            <div class="d-flex h-100 bg-light me-4 rounded">
+              <input class="border rounded-start border-muted px-3 py-2 h-100" type="search" id="buscarInput" placeholder="Buscar productos">
+              <i class="m-2 fa fa-search py-1"></i>
             </div>
+            <input type="radio" class="btn-check" name="options" id="sortAsc">
+            <label class="btn btn-light rounded" for="sortAsc"><i class="fas fa-sort-amount-up mr-1"></i>$</label>
+            <input type="radio" class="btn-check" name="options" id="sortDesc">
+            <label class="btn btn-light" for="sortDesc"><i class="fas fa-sort-amount-down mr-1"></i>$</label>
+            <input type="radio" class="btn-check" name="options" id="sortByCount" checked>
+            <label class="btn btn-light d-flex align-items-center" for="sortByCount"><i class="fas fa-sort-amount-down mr-1"></i>Rel</label>
           </div>
         </div>
       </div>
