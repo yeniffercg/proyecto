@@ -45,3 +45,7 @@ const user = localStorage.getItem('user');
 if (user) {
   document.getElementById('userTop').textContent = user;
 }
+
+document.getElementById("cerrarSesion").addEventListener("click", function() {
+  localStorage.removeItem("user");
+});
