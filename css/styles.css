@@ -328,3 +328,33 @@ label{
   background-color: #D88AD4;
   border: none;
 }
+
+#botonGuardar{
+  background-color: #9D4D99;
+  border: none;
+}
+
+#arrobaName {
+  margin-left: 7%;
+  margin-top: 5%;
+  font-family: "Poppins", sans-serif;
+  font-weight: 800;
+  font-style: normal;
+}
+#arroba{
+  margin-left: 7%;
+  color: rgb(168, 167, 167);
+    font-family: "Poppins", sans-serif;
+    font-weight: 100;
+    font-style: normal;
+  }
+
+
+#imgProfile{
+  margin-left:20%;
+
+}
+
+#profile{
+  margin-top: 3%;
+}
