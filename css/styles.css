@@ -350,11 +350,15 @@ label{
   }
 
 
-#imgProfile{
-  margin-left:20%;
-
+#profile {
+  width: 30%; 
+  margin-right: 20px; 
 }
 
-#profile{
-  margin-top: 3%;
+#form {
+  width: 65%; 
+}
+
+.btn-cambiar-foto {
+  background-color: #9D4D99; 
 }
