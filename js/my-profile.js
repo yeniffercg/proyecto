@@ -16,6 +16,7 @@ document.getElementById('botonGuardar').addEventListener('click', function(){
 
 })
 
+
 document.addEventListener("DOMContentLoaded", function () {
   const imageInput = document.getElementById("imageUpload");
   const profileImage = document.getElementById("profileImage");
@@ -39,3 +40,19 @@ const usuarioAlmacenado = localStorage.getItem("username");
     document.getElementById("userProfile").setAttribute("value", usuarioAlmacenado);
  }
 });
+
+
+const darkMode = document.getElementById('flexSwitchCheckDefault');
+const isNightMode = localStorage.getItem('nightMode');
+
+    if (isNightMode === 'true') {
+        document.body.classList.add('night-mode');
+        darkMode.checked = true;
+    }
+
+    darkMode.addEventListener('click', () => {
+        const nightModeActivated = darkMode.checked;
+        document.body.classList.toggle('night-mode', nightModeActivated);
+        localStorage.setItem('nightMode', nightModeActivated);
+});
+

@@ -210,3 +210,4 @@ function recalcularPromedio(nuevaCalif) {
     document.getElementById("califProd").innerHTML = `
         ${nuevoPromedio} ${estrellas(nuevoPromedio)} <span class="text-muted">(${numCalif})</span>`;
 }
+
