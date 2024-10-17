@@ -48,4 +48,5 @@ if (user) {
 
 document.getElementById("cerrarSesion").addEventListener("click", function() {
   localStorage.removeItem("user");
+  localStorage.removeItem("profileImage");
 });
