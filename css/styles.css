@@ -358,3 +358,13 @@ label{
 #profile{
   margin-top: 3%;
 }
+
+#flexSwitchCheckDefault {
+  background-color: #D88AD4;
+  border: #63427b;
+}
+
+.night-mode {
+  background-color: #3f3f3f;
+  color: #fff;
+}
