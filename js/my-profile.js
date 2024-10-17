@@ -17,6 +17,31 @@ document.getElementById('botonGuardar').addEventListener('click', function(){
 })
 
 
+document.addEventListener("DOMContentLoaded", function () {
+  const imageInput = document.getElementById("imageUpload");
+  const profileImage = document.getElementById("profileImage");
+
+  const imagenGuardada = localStorage.getItem("profileImage");
+  if (imagenGuardada) {
+    profileImage.src = imagenGuardada;
+}
+
+imageInput.addEventListener("change", function (event) {
+    const lector = new FileReader();
+    lector.onload = function () {
+        profileImage.src = lector.result;
+        localStorage.setItem("profileImage", lector.result);
+    };
+    lector.readAsDataURL(event.target.files[0]);
+  });
+
+const usuarioAlmacenado = localStorage.getItem("username");
+ if (usuarioAlmacenado) {
+    document.getElementById("userProfile").setAttribute("value", usuarioAlmacenado);
+ }
+});
+
+
 const darkMode = document.getElementById('flexSwitchCheckDefault');
 const isNightMode = localStorage.getItem('nightMode');
 
@@ -30,3 +55,4 @@ const isNightMode = localStorage.getItem('nightMode');
         document.body.classList.toggle('night-mode', nightModeActivated);
         localStorage.setItem('nightMode', nightModeActivated);
 });
+
