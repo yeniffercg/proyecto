@@ -325,12 +325,12 @@ label{
   padding: 10px 35px;
   border-radius: 5%;
   color: white;
-  background-color: #D88AD4;
+  background-color: #dc95d8;
   border: none;
 }
 
 #botonGuardar{
-  background-color: #9D4D99;
+  background-color: #dc95d8;
   border: none;
 }
 
@@ -349,19 +349,9 @@ label{
     font-style: normal;
   }
 
-
-#profile {
-  width: 30%; 
-  margin-right: 20px; 
-}
-
-#form {
-  width: 65%; 
-}
-
-
 .btn-cambiar-foto {
-  background-color: #9D4D99; 
+  background-color: #dc95d8; 
+  color: white
 }
 
 #profile{
@@ -369,7 +359,7 @@ label{
 }
 
 #flexSwitchCheckDefault {
-  background-color: #D88AD4;
+  background-color: #dc95d8;
   border: #63427b;
 }
 
@@ -378,3 +368,17 @@ label{
   color: #fff;
 }
 
+.bd-placeholder-img {
+  font-size: 1.125rem;
+  text-anchor: middle;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+@media (min-width: 768px) {
+  .bd-placeholder-img-lg {
+    font-size: 3.5rem;
+  }
+}
