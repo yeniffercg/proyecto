@@ -351,21 +351,20 @@ label{
 
 
 #profile {
-  width: 30%; 
+  width: 50%; 
+  margin-top: 3%;
   margin-right: 20px; 
 }
 
 #form {
-  width: 65%; 
+  width: 50%; 
 }
 
 
 .btn-cambiar-foto {
   background-color: #9D4D99; 
-}
-
-#profile{
-  margin-top: 3%;
+  color: white;
+  width: 50%;
 }
 
 #flexSwitchCheckDefault {

@@ -7,13 +7,15 @@ document.getElementById('botonGuardar').addEventListener('click', function(){
  const name = document.getElementById('name1');
  const lastName = document.getElementById('lastName1');
 
-  if(!name || !lastName){
+  if(name.value =="" || lastName.value ==""){
     alert('Debe llenar los campos obligatorios para continuar!');
-  }
+  } else{
+
+  } if (name.value || lastName.value) {
  const data = {name, lastName}
  localStorage.setItem('userData', JSON.stringify(data))
-    alert('datos guardados con exitooo')
-
+    alert('Datos guardados con exito!')
+  }
 })
 
 
