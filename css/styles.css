@@ -358,6 +358,11 @@ label{
   margin-top: 3%;
 }
 
+#profileImage {
+  width: 30%;
+  overflow: hidden;
+}
+
 #flexSwitchCheckDefault {
   background-color: #dc95d8;
   border: #63427b;
