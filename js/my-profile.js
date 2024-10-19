@@ -20,6 +20,7 @@ document.getElementById('botonGuardar').addEventListener('click', function(){
 
 if (user) {
   document.getElementById('userProfile').setAttribute("value", user);
+  document.getElementById('email').value = user.email;
 }
 
 document.getElementById('botonGuardar').addEventListener('click', function() {
@@ -29,7 +30,6 @@ document.getElementById('botonGuardar').addEventListener('click', function() {
 
   let isValid = true;
 
-  // Validar y aplicar estilos
   [name, lastName, email].forEach(field => {
     if (!field.value) {
       field.classList.remove('valid');
@@ -48,8 +48,8 @@ document.getElementById('botonGuardar').addEventListener('click', function() {
     isValid = false;
   }
 
-  if (!isValid) {
-    const data = { name: name.value, lastName: lastName.value };
+  if (isValid) {
+    const data = { name: name.value, lastName: lastName.value, email: email.value };
     localStorage.setItem('userData', JSON.stringify(data));
   }
 });
