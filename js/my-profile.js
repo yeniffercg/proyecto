@@ -4,20 +4,18 @@ if (user) {
 
 document.getElementById('botonGuardar').addEventListener('click', function(){
 
- const name = document.getElementById('name1');
- const lastName = document.getElementById('lastName1');
+ const name = document.getElementById('name1').value;
+ const lastName = document.getElementById('lastName1').value;
+ const email = document.getElementById('email').value;
 
-  if(name.value =="" || lastName.value ==""){
+  if(!name || !lastName || !email){
     alert('Debe llenar los campos obligatorios para continuar!');
-  } else{
-
-  } if (name.value || lastName.value) {
- const data = {name, lastName}
- localStorage.setItem('userData', JSON.stringify(data))
-    alert('Datos guardados con exito!')
+  } else {
+    alert('datos guardados con exitooo')
   }
+  const data = {name, lastName}
+  localStorage.setItem('userData', JSON.stringify(data))
 })
-
 
 document.addEventListener("DOMContentLoaded", function () {
   const imageInput = document.getElementById("imageUpload");
