@@ -52,6 +52,9 @@ document.getElementById('botonGuardar').addEventListener('click', function() {
     const data = { name: name.value, lastName: lastName.value, email: email.value };
     localStorage.setItem('userData', JSON.stringify(data));
   }
+
+  document.getElementById('arrobaName').textContent = `${name.value} ${lastName.value}`;
+  document.getElementById('arroba').textContent = email.value;
 });
 
 document.addEventListener("DOMContentLoaded", function () {
