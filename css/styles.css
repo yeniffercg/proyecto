@@ -307,9 +307,7 @@ font-family: Arial, Helvetica, sans-serif;
 label{
   text-align: left;
   justify-content: space-between;
-  width: 67%;
-  display: flex; 
-  margin-bottom: 10px;
+  display: flex;
 }
 
 .estrella {
@@ -332,26 +330,29 @@ label{
 #botonGuardar{
   background-color: #dc95d8;
   border: none;
+  color: white;
+  max-height: fit-content;
 }
 
 #arrobaName {
-  margin-left: 7%;
+  
   margin-top: 5%;
   font-family: "Poppins", sans-serif;
   font-weight: 800;
   font-style: normal;
 }
+
 #arroba{
-  margin-left: 7%;
+  margin-bottom: 10%;
   color: rgb(168, 167, 167);
-    font-family: "Poppins", sans-serif;
-    font-weight: 100;
-    font-style: normal;
-  }
+  font-family: "Poppins", sans-serif;
+  font-weight: 100;
+  font-style: normal;
+}
 
 .btn-cambiar-foto {
   background-color: #dc95d8; 
-  color: white
+  color: white;
 }
 
 #profile{
@@ -359,8 +360,9 @@ label{
 }
 
 #profileImage {
-  width: 30%;
-  overflow: hidden;
+  width: 50%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
 }
 
 #flexSwitchCheckDefault {
