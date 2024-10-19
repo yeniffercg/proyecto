@@ -350,6 +350,15 @@ label{
   font-style: normal;
 }
 
+.valid {
+  border-color: green !important;
+}
+
+.invalid {
+  border-color: red !important;
+}
+
+
 .btn-cambiar-foto {
   background-color: #dc95d8; 
   color: white;
