@@ -1,3 +1,4 @@
+/*  Codigo de Emilia
 if (user) {
     document.getElementById('userProfile').setAttribute("value", user)
   }
@@ -11,11 +12,50 @@ document.getElementById('botonGuardar').addEventListener('click', function(){
   if(!name || !lastName || !email){
     alert('Debe llenar los campos obligatorios para continuar!');
   } else {
-    alert('datos guardados con exitooo')
+    alert('datos guardados con exitooo');
   }
   const data = {name, lastName}
   localStorage.setItem('userData', JSON.stringify(data))
-})
+})*/
+
+if (user) {
+  document.getElementById('userProfile').setAttribute("value", user);
+  document.getElementById('email').value = user.email;
+}
+
+document.getElementById('botonGuardar').addEventListener('click', function() {
+  const name = document.getElementById('name1');
+  const lastName = document.getElementById('lastName1');
+  const email = document.getElementById('email');
+
+  let isValid = true;
+
+  [name, lastName, email].forEach(field => {
+    if (!field.value) {
+      field.classList.remove('valid');
+      field.classList.add('invalid');
+      isValid = false;
+    } else {
+      field.classList.remove('invalid');
+      field.classList.add('valid');
+    }
+  });
+
+  
+  if (email.value && !email.value.includes('@')) {
+    email.classList.remove('valid');
+    email.classList.add('invalid');
+    isValid = false;
+  }
+
+  if (isValid) {
+    const data = { name: name.value, lastName: lastName.value, email: email.value };
+    localStorage.setItem('userData', JSON.stringify(data));
+  }
+
+  document.getElementById('arrobaName').textContent = `${name.value} ${lastName.value}`;
+  document.getElementById('arroba').textContent = email.value;
+});
 
 document.addEventListener("DOMContentLoaded", function () {
   const imageInput = document.getElementById("imageUpload");

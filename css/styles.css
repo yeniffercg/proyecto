@@ -328,7 +328,7 @@ label{
 }
 
 #botonGuardar{
-  background-color: #9D4D99;
+  background-color: #D88AD4;
   border: none;
   color: white;
   max-height: fit-content;
@@ -349,6 +349,15 @@ label{
   font-weight: 100;
   font-style: normal;
 }
+
+.valid {
+  border-color: green !important;
+}
+
+.invalid {
+  border-color: red !important;
+}
+
 
 .btn-cambiar-foto {
   background-color: #dc95d8; 
