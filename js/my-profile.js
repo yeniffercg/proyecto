@@ -1,28 +1,12 @@
-/*  Codigo de Emilia
-if (user) {
-    document.getElementById('userProfile').setAttribute("value", user)
-  }
-
-document.getElementById('botonGuardar').addEventListener('click', function(){
-
- const name = document.getElementById('name1').value;
- const lastName = document.getElementById('lastName1').value;
- const email = document.getElementById('email').value;
-
-  if(!name || !lastName || !email){
-    alert('Debe llenar los campos obligatorios para continuar!');
-  } else {
-    alert('datos guardados con exitooo');
-  }
-  const data = {name, lastName}
-  localStorage.setItem('userData', JSON.stringify(data))
-})*/
+/*email en menu desplegable*/
 
 if (user) {
   document.getElementById('userProfile').setAttribute("value", user);
   document.getElementById('email').value = user.email;
   document.getElementById('arrobaName').textContent = user;
 }
+
+/*Validacion de campos*/
 
 document.getElementById('botonGuardar').addEventListener('click', function() {
   const name = document.getElementById('name1');
@@ -55,9 +39,13 @@ document.getElementById('botonGuardar').addEventListener('click', function() {
     console.log(localStorage.getItem('userData'))
   }
 
+/*Cambia nombre y email debajo de la imagen por los ingresados por el usuario*/
+
   document.getElementById('arrobaName').textContent = `${name.value} ${lastName.value}`;
   document.getElementById('arroba').textContent = email.value;
 });
+
+/*Cambia la imagen de usuario*/
 
 document.addEventListener("DOMContentLoaded", function () {
   const imageInput = document.getElementById("imageUpload");
@@ -85,6 +73,7 @@ const usuarioAlmacenado = localStorage.getItem("username");
  }
 });
 
+/*Modo nocturno*/
 const theme = document.getElementById('tema');
 const darkMode = document.getElementById('flexSwitchCheckDefault');
 const isNightMode = localStorage.getItem('nightMode');
