@@ -236,6 +236,7 @@ a.custom-card:hover {
   padding: 5px 5px;
   border-radius: 3px;
   border: 1px solid #9D4D99;
+  margin-bottom: 5%;
 }
 
 #contr {
@@ -357,7 +358,6 @@ label{
 .invalid {
   border-color: red !important;
 }
-
 
 .btn-cambiar-foto {
   background-color: #dc95d8; 

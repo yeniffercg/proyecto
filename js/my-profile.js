@@ -21,6 +21,7 @@ document.getElementById('botonGuardar').addEventListener('click', function(){
 if (user) {
   document.getElementById('userProfile').setAttribute("value", user);
   document.getElementById('email').value = user.email;
+  document.getElementById('arrobaName').textContent = user;
 }
 
 document.getElementById('botonGuardar').addEventListener('click', function() {
@@ -46,11 +47,12 @@ document.getElementById('botonGuardar').addEventListener('click', function() {
     email.classList.remove('valid');
     email.classList.add('invalid');
     isValid = false;
-  }
+  } 
 
   if (isValid) {
     const data = { name: name.value, lastName: lastName.value, email: email.value };
     localStorage.setItem('userData', JSON.stringify(data));
+    console.log(localStorage.getItem('userData'))
   }
 
   document.getElementById('arrobaName').textContent = `${name.value} ${lastName.value}`;
