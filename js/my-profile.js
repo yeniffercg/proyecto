@@ -7,6 +7,9 @@ const userData = JSON.parse(localStorage.getItem('userData'));
 if (userData) {
   document.getElementById('arrobaName').textContent = userData.name + userData.lastName;
   document.getElementById('arroba').textContent = userData.email;
+  document.getElementById('name1').value = userData.name;
+  document.getElementById('lastName1').value = userData.lastName;
+  document.getElementById('email').value = userData.email;
 } else {}
 
 document.getElementById('botonGuardar').addEventListener('click', function() {
