@@ -47,8 +47,5 @@ if (user) {
 }
 
 document.getElementById("cerrarSesion").addEventListener("click", function() {
-  localStorage.removeItem("user");
-  localStorage.removeItem("profileImage");
-  localStorage.removeItem("nightMode");
-  localStorage.removeItem("userData");
+  localStorage.clear()
 });

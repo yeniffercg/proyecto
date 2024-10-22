@@ -1,23 +1,38 @@
 if (user) {
   document.getElementById('userProfile').setAttribute("value", user);
   document.getElementById('arrobaName').textContent = user;
-} else {}
+}
 
 const userData = JSON.parse(localStorage.getItem('userData'));
-if (userData) {
-  document.getElementById('arrobaName').textContent = userData.name + userData.lastName;
-  document.getElementById('arroba').textContent = userData.email;
-  document.getElementById('name1').value = userData.name;
-  document.getElementById('lastName1').value = userData.lastName;
-  document.getElementById('email').value = userData.email;
-} else {}
+const name2 = document.getElementById('name2');
+const lastName = document.getElementById('lastName1');
+const lastName2 = document.getElementById('lastName2');
+const email = document.getElementById('email');
+const userProfile = document.getElementById('userProfile');
+const tel = document.getElementById('tel');
+
+if(userData) {
+    const name = document.getElementById('name1');
+    document.getElementById('arrobaName').textContent = userData[0].name + ' ' + userData[0].lastName;
+    document.getElementById('arroba').textContent = userData[0].email;
+    name.value = userData[0].name;
+    lastName.value = userData[0].lastName;
+    email.value = userData[0].email;
+  if (userData.length == 2) {
+    document.getElementById('arrobaName').textContent = userData[0].name + ' ' + userData[0].lastName;
+    document.getElementById('arroba').textContent = userData[0].email;
+    name.value = userData[0].name;
+    lastName.value = userData[0].lastName;
+    email.value = userData[0].email;
+    name2.value = userData[1].name2;
+    lastName2.value = userData[1].lastName2;
+    tel.value = userData[1].tel;
+  }
+}
 
 document.getElementById('botonGuardar').addEventListener('click', function() {
-  const name = document.getElementById('name1');
-  const lastName = document.getElementById('lastName1');
-  const email = document.getElementById('email');
-  const userProfile = document.getElementById('userProfile');
 
+  const name = document.getElementById('name1');
   let isValid = true;
 
   [name, lastName, email, userProfile].forEach(field => {
@@ -31,7 +46,7 @@ document.getElementById('botonGuardar').addEventListener('click', function() {
     }
   });
 
-  if(userProfile.value && userProfile.value !== user) {
+  if (userProfile.value && userProfile.value !== user) {
     localStorage.setItem("user", userProfile.value);
   }
 
@@ -42,7 +57,15 @@ document.getElementById('botonGuardar').addEventListener('click', function() {
   } 
 
   if (isValid) {
-    const data = { name: name.value, lastName: lastName.value, email: email.value };
+    const requiredData = { name: name.value, lastName: lastName.value, email: email.value };
+    const optionalData = {};
+    const data = [requiredData, optionalData];
+    [name2, lastName2, tel].forEach(field => {
+      if (field.value) {
+        optionalData[field.name] = field.value;
+      }
+    });
+    console.log(data);
     localStorage.setItem('userData', JSON.stringify(data));
     console.log(localStorage.getItem('userData'));
     document.getElementById('arrobaName').textContent = `${name.value} ${lastName.value}`;
@@ -81,13 +104,6 @@ const theme = document.getElementById('tema');
 const dwMenu = document.getElementById('dwMenu');
 const darkMode = document.getElementById('flexSwitchCheckDefault');
 const isNightMode = localStorage.getItem('nightMode');
-
-if (isNightMode === 'true') {
-  dwMenu.classList.add('night-mode');
-  theme.classList.add('night-mode');
-  document.body.classList.add('night-mode');
-  darkMode.checked = true;
-}
 
 darkMode.addEventListener('click', () => {
   const nightModeActivated = darkMode.checked;
