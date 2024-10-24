@@ -45,7 +45,8 @@ function mostrarProducto(p) {
     des.innerHTML += `<h1 class="fw-bold fs-1 mb-4">${p.name}</h1>
                     <p class="fs-5 mb-3">${p.description}</p>
                     <p class="fw-bold fs-2 mb-2">${p.currency} ${p.cost}</p>
-                    <p class="text-muted fs-6 mb-0">${p.soldCount} productos vendidos.</p>`
+                    <p class="text-muted fs-6 mb-0">${p.soldCount} productos vendidos.</p>
+                    <a href="cart.html"><button class="card-footer" id="comprar">Comprar</button>`
 }
 
 function imagenes(array) {
@@ -210,4 +211,3 @@ function recalcularPromedio(nuevaCalif) {
     document.getElementById("califProd").innerHTML = `
         ${nuevoPromedio} ${estrellas(nuevoPromedio)} <span class="text-muted">(${numCalif})</span>`;
 }
-
