@@ -19,14 +19,15 @@ if(userData) {
     lastName.value = userData[0].lastName;
     email.value = userData[0].email;
   if (userData.length == 2) {
-    document.getElementById('arrobaName').textContent = userData[0].name + ' ' + userData[0].lastName;
-    document.getElementById('arroba').textContent = userData[0].email;
-    name.value = userData[0].name;
-    lastName.value = userData[0].lastName;
-    email.value = userData[0].email;
-    name2.value = userData[1].name2;
-    lastName2.value = userData[1].lastName2;
-    tel.value = userData[1].tel;
+    if (userData[1].name2) {
+      name2.value = userData[1].name2;
+    }
+    if (userData[1].lastName2) {
+      lastName2.value = userData[1].lastName2;
+    }
+    if (userData[1].tel) {
+      tel.value = userData[1].tel;
+    }
   }
 }
 
