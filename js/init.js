@@ -49,3 +49,7 @@ if (user) {
 document.getElementById("cerrarSesion").addEventListener("click", function() {
   localStorage.clear()
 });
+
+// https://us04web.zoom.us/j/73926289447?pwd=nN2ATpD6tjQ8RwBKEXex6cTjY4hdNd.1
+
+// ya le mande ajjaa
