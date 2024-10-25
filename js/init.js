@@ -51,7 +51,9 @@ document.getElementById("cerrarSesion").addEventListener("click", function() {
 });
 
 const isNightMode = localStorage.getItem('nightMode');
+const darkMode = document.getElementById('flexSwitchCheckDefault');
 
-if (isNightMode) {
+if (isNightMode === 'true') {
   document.body.classList.toggle('night-mode');
+  darkMode.checked = true;
 }
