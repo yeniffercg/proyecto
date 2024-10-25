@@ -96,9 +96,15 @@ const usuarioAlmacenado = localStorage.getItem("username");
  }
 });
 
+
+const darkMode = document.getElementById('flexSwitchCheckDefault');
+
 darkMode.addEventListener('click', () => {
   const nightModeActivated = darkMode.checked;
   document.body.classList.toggle('night-mode', nightModeActivated);
   localStorage.setItem('nightMode', nightModeActivated);
 });
 
+if(isNightMode === 'true'){
+  darkMode.checked = true;
+}
