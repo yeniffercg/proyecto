@@ -8,7 +8,6 @@ const name2 = document.getElementById('name2');
 const lastName = document.getElementById('lastName1');
 const lastName2 = document.getElementById('lastName2');
 const email = document.getElementById('email');
-const userProfile = document.getElementById('userProfile');
 const tel = document.getElementById('tel');
 
 if(userData) {
@@ -46,10 +45,6 @@ document.getElementById('botonGuardar').addEventListener('click', function() {
       field.classList.add('valid');
     }
   });
-
-  if (userProfile.value && userProfile.value !== user) {
-    localStorage.setItem("user", userProfile.value);
-  }
 
   if (email.value && !email.value.includes('@')) {
     email.classList.remove('valid');
@@ -105,6 +100,13 @@ const theme = document.getElementById('tema');
 const dwMenu = document.getElementById('dwMenu');
 const darkMode = document.getElementById('flexSwitchCheckDefault');
 const isNightMode = localStorage.getItem('nightMode');
+
+if ('isNightmode' === true) {
+  dwMenu.classList.toggle('ninight-mode');
+  theme.classList.toggle('ninight-mode');
+  document.body.classList.toggle('ninight-mode');
+  darkMode.classList.toggle('ninight-mode');
+}
 
 darkMode.addEventListener('click', () => {
   const nightModeActivated = darkMode.checked;
