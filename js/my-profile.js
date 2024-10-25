@@ -96,22 +96,11 @@ const usuarioAlmacenado = localStorage.getItem("username");
  }
 });
 
-const theme = document.getElementById('tema');
-const dwMenu = document.getElementById('dwMenu');
 const darkMode = document.getElementById('flexSwitchCheckDefault');
-const isNightMode = localStorage.getItem('nightMode');
-
-if ('isNightmode' === true) {
-  dwMenu.classList.toggle('ninight-mode');
-  theme.classList.toggle('ninight-mode');
-  document.body.classList.toggle('ninight-mode');
-  darkMode.classList.toggle('ninight-mode');
-}
 
 darkMode.addEventListener('click', () => {
   const nightModeActivated = darkMode.checked;
-  dwMenu.classList.toggle('night-mode', nightModeActivated);
-  theme.classList.toggle('night-mode', nightModeActivated);
+  darkMode.classList.toggle('night-mode');
   document.body.classList.toggle('night-mode', nightModeActivated);
   localStorage.setItem('nightMode', nightModeActivated);
 });

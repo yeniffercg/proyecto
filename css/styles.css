@@ -379,15 +379,39 @@ label{
   border: #63427b;
 }
 
-.night-mode {
-  background-color: #3f3f3f;
-  color: #fff;
-  a, p {color: #fff}
+#sell-info button.btn.btn-primary.btn-lg {
+  background-color: #D88AD4;
+  border: none;
+  color: #fff
 }
 
-.night-mode .form-control {
+.night-mode{
+  background-color: #3f3f3f;
   color: #fff;
+  *:not(#userTop, .navbar-toggler, .carousel-indicators button){
+  border-color: #818181 !important;
+  }
+  a {color: #fff !important}
+  .text-muted {color: #b8b8b8 !important;}
+  main, .form-control, .dropdown-menu, .btn-light, 
+  .list-group-item, .img-thumbnail, input,
+  .card-body, #file-upload, .form-select, .btn-link, .album, .card{
+    background-color: #3f3f3f !important;
+    color: #fff !important;
+  }
+  .btn-check:checked+.btn-light, .btn-secondary, .bg-light:not(.album){
+    background-color: #818181 !important;
+    color: #fff !important;
+  }
+  #flexSwitchCheckDefault{
+    background-color: #D88AD4 !important;
+    border: #63427b !important;
+  }
+  .breadcrumb-item+.breadcrumb-item::before {
+    filter: invert(100%);
+  }
 }
+
 
 #comprar, #finCompra{
   margin-top: 5%;
