@@ -212,6 +212,6 @@ function recalcularPromedio(nuevaCalif) {
         ${nuevoPromedio} ${estrellas(nuevoPromedio)} <span class="text-muted">(${numCalif})</span>`;
 }
 
-function setProductCart(){
-    
-}
+document.getElementById("comprar")('click', function setProductCart(){
+
+})
