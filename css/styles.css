@@ -410,19 +410,14 @@ label{
 
 
 #comprar, #finCompra{
-  margin-top: 5%;
-  padding: 10px 35px;
-  border-radius: 5%;
   color: white;
-  background-color: #D88AD4;
-  border: none;
+  background-color: #D88AD4;  
+  width: 100%;
 }
 
 #contCompra{
-  margin-top: 5%;
-  padding: 10px 35px;
-  border-radius: 5%;
   color: #D88AD4;
   background-color: white;
-  border-color: #D88AD4;
+  border: solid #D88AD4;
+  width: 100%;
 }

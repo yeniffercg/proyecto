@@ -42,29 +42,33 @@
       </div>
     </div>
   </nav>
-  <main class="row mx-5 my-3">
+  <main class="row mx-5 my-5">
     <div id="product-list" class="list-group container col-8">
       <div class="list-group-item list-group-item-action cursor-active">
         <div class="row">
-            <div class="col-3">
+            <div class="col-4">
                 <img src="img/car4.jpg" alt="${product.description}" class="img-thumbnail">
             </div>
             <div class="col">
                 <div class="d-flex w-100 justify-content-between">
-                    <h4 class="mb-1">Ferrari 567 <span class="text-muted">__________________________________</span>USD 67.000</h4>
-                    <i class="bi bi-trash"></i>
-                    <small class="text-muted"></small>
+                  <h4 class="mb-1">Ferrari 567</h4>
+                  <h4>USD 67.000</h4>
                 </div>
+                <i class="bi bi-trash"></i>
+                <small class="text-muted"></small>
             </div>
         </div>
       </div>
     </div>
-    <div id="resume-cost" class="row col-3 gx-5 border rounded border-muted">
-      <h4>Resumen del pedido</h4>
-    </div>
-    <div class="row col-3">
-  <button id="finCompra">Finalizar compra</button>
-  <button id="contCompra">Continuar comprando</button>
+    <div class="col-3">
+      <div id="resume-cost" class="border rounded border-muted px-3 py-2">
+        <h4 class="mb-4">Resumen del pedido</h4>
+        <h5 class="fw-normal">Ferrari<span class="float-end">USD 67.000</span></h5>
+      </div>
+      <div>
+        <button id="finCompra" class="mt-3 py-3 px-auto border rounded border-0 fs-5">Finalizar compra</button>
+        <button id="contCompra" class="mt-3 py-3 px-auto rounded fs-5">Continuar comprando</button>
+      </div>
     </div>
   </main>
   <footer class="text-muted">
