@@ -34,7 +34,7 @@ function mostrarProducto(p) {
     let des = document.getElementById("descripcion"); 
 
     cat.innerHTML += `<nav style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='currentColor'/%3E%3C/svg%3E&#34;);" aria-label="breadcrumb">
-                        <ol class="breadcrumb mt-3">
+                        <ol class="breadcrumb mt-3">s
                             <li class="breadcrumb-item"><a href="index.html" class="text-decoration-none text-muted">Inicio</a></li>
                             <li class="breadcrumb-item active" aria-current="page"><a href="products.html" class="text-decoration-none text-reset">${p.category}</a></li>
                         </ol>
@@ -46,8 +46,16 @@ function mostrarProducto(p) {
                     <p class="fs-5 mb-3">${p.description}</p>
                     <p class="fw-bold fs-2 mb-2">${p.currency} ${p.cost}</p>
                     <p class="text-muted fs-6 mb-0">${p.soldCount} productos vendidos.</p>
-                    <a href="cart.html"><button class="card-footer" id="comprar">Comprar</button>`
-}
+                    <button class="card-footer" id="comprar">Comprar</button>`;
+
+    document.getElementById("comprar").addEventListener("click", function() {
+        var itemCart = Object.assign({}, { name: p.name, cost: p.cost, image: p.image, description: p.description, currency: p.currency});
+        console.log(itemCart);
+        localStorage.setItem('itemCart', JSON.stringify(itemCart));
+        window.location.href="cart.html";
+    });       
+}            
+
 
 function imagenes(array) {
     let carrusel = document.getElementById("imgcarrusel");
@@ -112,11 +120,6 @@ function calificacionesPromedio(array, id) {
         document.getElementById(id).innerHTML += `
             ${promedioCalif} ${estrellas(promedioCalif)} <span class="text-muted">(${numCalif})</span>`
     }
-}
-
-function setProdID(id) {
-    localStorage.setItem("prodID", id);
-    window.location = "product-info.html"
 }
 
 function productosRelacionados(array) {
@@ -212,6 +215,6 @@ function recalcularPromedio(nuevaCalif) {
         ${nuevoPromedio} ${estrellas(nuevoPromedio)} <span class="text-muted">(${numCalif})</span>`;
 }
 
-document.getElementById("comprar")('click', function setProductCart(){
 
-})
+
+
