@@ -48,11 +48,14 @@ function mostrarProducto(p) {
                     <p class="text-muted fs-6 mb-0">${p.soldCount} productos vendidos.</p>
                     <button class="card-footer" id="comprar">Comprar</button>`;
 
+    let prodCarrito = [];
     document.getElementById("comprar").addEventListener("click", function() {
-        var itemCart = Object.assign({}, { name: p.name, cost: p.cost, image: p.image, description: p.description, currency: p.currency});
+        var itemCart = Object.assign({}, { name: p.name, cost: p.cost, image: p.images, description: p.description, currency: p.currency});
         console.log(itemCart);
         localStorage.setItem('itemCart', JSON.stringify(itemCart));
-        window.location.href="cart.html";
+        prodCarrito.push(localStorage.getItem('itemCart'));        
+        // window.location.href="cart.html";
+        console.log(prodCarrito)
     });       
 }            
 
