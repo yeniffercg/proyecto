@@ -46,7 +46,7 @@ function mostrarProducto(p) {
                     <p class="fs-5 mb-3">${p.description}</p>
                     <p class="fw-bold fs-2 mb-2">${p.currency} ${p.cost}</p>
                     <p class="text-muted fs-6 mb-0">${p.soldCount} productos vendidos.</p>
-                    <button id="comprar" class="card-footer mt-3 py-3 px-auto border rounded border-0 fs-5 w-50">Comprar</button>`;
+                    <button id="comprar" class="card-footer mt-3 py-3 px-auto border rounded border-0 fs-5">Comprar</button>`;
 
     
     document.getElementById("comprar").addEventListener("click", function() {
@@ -57,15 +57,15 @@ function mostrarProducto(p) {
 
 function guardarProductosCarrito(p) {
     const producto = {name: p.name, cost: p.cost, image: p.images, description: p.description, currency: p.currency, cantidad: 1}
-    let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
-    // if (producto == carrito[1]) {
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    // if (producto == cart[1]) {
     //     cantidad = producto.cantidad;
     //     cantidad++;
     //     Object.assign(producto, cantidad);
     // } else {          ES CON EL INCLUDE() CREO. MAÑANA LO VEMOS BAI
-        carrito.push(producto);
+        cart.push(producto);
     // }
-    localStorage.setItem('carrito', JSON.stringify(carrito));
+    localStorage.setItem('cart', JSON.stringify(cart));
 }
 
 function imagenes(array) {

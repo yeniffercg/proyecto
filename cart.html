@@ -46,10 +46,11 @@
     <div id="product-list" class="list-group container col-8">
     </div>
     <div id="resume" class="col-3">
-      <div id="resume-cost" class="border rounded border-muted px-3 py-2">
+      <div class="border rounded border-muted px-3 py-2">
         <h4 class="mb-4">Resumen del pedido</h4>
-        <h5 class="fw-normal">Ferrari<span class="float-end">USD 67.000</span></h5>
-        <h4 class="mb-4">Subtotal: </h4>
+        <div id="resume-list"></div>
+        <h4 class="mt-4">Subtotal: <span id="subtotal" class="float-end"></span></h4>
+        <h4 class="mt-1 text-end fs-6 text-muted" id="subtotalUSD"></h4>
       </div>
       <div>
         <button id="finCompra" class="mt-3 py-3 px-auto border rounded border-0 fs-5 pinkButton w-100">Finalizar compra</button>

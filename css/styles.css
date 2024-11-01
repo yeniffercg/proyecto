@@ -408,7 +408,6 @@ label{
   }
 }
 
-
 #comprar, #finCompra{
   color: white;
   background-color: #D88AD4;  
@@ -420,4 +419,9 @@ label{
   background-color: white;
   border: solid #D88AD4;
   width: 100%;
+}
+
+#comCompra{
+  color: white;
+  background-color: #D88AD4;  
 }
