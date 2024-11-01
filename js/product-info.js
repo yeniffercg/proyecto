@@ -56,9 +56,15 @@ function mostrarProducto(p) {
 }            
 
 function guardarProductosCarrito(p) {
-    const producto = {name: p.name, cost: p.cost, image: p.images, description: p.description, currency: p.currency }
+    const producto = {name: p.name, cost: p.cost, image: p.images, description: p.description, currency: p.currency, cantidad: 1}
     let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
-    carrito.push(producto)
+    // if (producto == carrito[1]) {
+    //     cantidad = producto.cantidad;
+    //     cantidad++;
+    //     Object.assign(producto, cantidad);
+    // } else {          ES CON EL INCLUDE() CREO. MAÑANA LO VEMOS BAI
+        carrito.push(producto);
+    // }
     localStorage.setItem('carrito', JSON.stringify(carrito));
 }
 
