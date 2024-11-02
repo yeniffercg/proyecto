@@ -33,7 +33,7 @@ document.addEventListener("DOMContentLoaded", function() {
                             </div>
                             <div>
                                 <label for="quantity"></label>
-                                <input type="number" id="cantidad" name="quantity" value="0">
+                                <input type="number" id="cantidad" name="quantity" value="1">
                                 <button id="sumar">+</button><button id="restar">-</button>
                                 <svg onclick="removeItem(${product.id})" xmlns="http://www.w3.org/2000/svg" width="25" 
                                  height="30" fill="currentColor" 
@@ -54,7 +54,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 <h5 class="fw-normal my-3">${product.name}<span class="float-end">${product.currency} ${product.cost}</span></h5>`;
         });
         calcularSubtotal(cart);
-        // actualizarSubtotal(cart);
+        actualizarSubtotal(cart);
     }
 });
 
@@ -63,6 +63,7 @@ function setProdID(id){
     window.location = "product-info.html"
 }
 
+//Funcionalidad de trash
 function removeItem(id){
     const cart = JSON.parse(localStorage.getItem('cart'));
     const index = cart.findIndex( product => product.id === id );
@@ -71,25 +72,51 @@ function removeItem(id){
     location.reload();
 }
 
+//Actualiza precio segun cantidad
+document.addEventListener("DOMContentLoaded", function(){
+    valorInicial = document.getElementById("cantidad");
+    btnSumar = document.getElementById("sumar")
+    btnRestar = document.getElementById("restar")
+    cantidad = Number(valorInicial.value);
+
+    actualizarSubtotal = () => {
+        calcularSubtotal(cart)
+    }
+
+    btnSumar.addEventListener('click', function (){
+        cantidad += 1;
+        valorInicial.value = cantidad;
+        actualizarSubtotal();
+
+});
+    btnRestar.addEventListener('click', function (){
+        if (cantidad > 0) {
+            cantidad -= 1;
+            valorInicial.value = cantidad;
+            actualizarSubtotal();
+        }
+   
+   })
+
+ 
+ });
+
+
+
 function calcularSubtotal(cart){
     subtotal = document.getElementById("subtotal");
     subtotalUSD = document.getElementById("subtotalUSD");
-    valorInicial = document.getElementById("cantidad").value;
-    btnSumar = document.getElementById("sumar")
-    btnRestar = document.getElementById("restar")
-    valorCantidad = Number(valorInicial);
     USD = (product) => (product).currency == "USD";
     UYU = (product) => (product).currency == "UYU";
+    cantidadInput = document.getElementById("cantidad");
+    cantidad = Number(cantidadInput.value) || 0;
     total = 0;
-
-    btnSumar.addEventListener('click', function (){
-       valorInicial = valorCantidad + 1
-    })
     
     if(cart.every(USD) || cart.every(UYU)){
         cart.forEach((product) => {
-            total += product.cost * valorInicial;
-            subtotal.innerHTML = product.currency + ' ' + total;
+          
+            total += product.cost * cantidad;
+            subtotal.innerHTML = `${product.currency}` + ' ' + total;
         });
     }else{
         const productsUSD = cart.filter(USD);
@@ -106,17 +133,22 @@ function calcularSubtotal(cart){
         });
         subtotal.innerHTML = 'UYU ' + totalUSD;
         subtotalUSD.innerHTML = 'USD ' + totalUSD;
+
+        actualizarSubtotal(cart);
     } 
 }
 
-//  function actualizarSubtotal(cart){
-//      const cantidades = document.getElementById("cantidad");
-//     cantidades.addEventListener("input", function(e) {
-//         cantidad = e.target.value;
-//         cart => (product).cantidad == cantidad;
-//     });
-// }
 
+
+
+
+   function actualizarSubtotal(cart){
+      const cantidades = document.getElementById("cantidad");
+      cantidades.addEventListener("input", function(e) {
+         cantidad = e.target.value;
+         cart => (product).cantidad == cantidad;
+     });
+ }
 
 document.getElementById("contCompra").addEventListener("click", function() {
     window.location.href = "categories.html";
