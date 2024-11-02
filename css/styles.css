@@ -425,3 +425,8 @@ label{
   color: white;
   background-color: #D88AD4;  
 }
+
+#cantidad 
+{
+  width: 3em;
+}

@@ -29,6 +29,11 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 });
 
+function updateCartBadge () {
+    const totalProducts = getTotalProducts(); 
+    const badge = document.querySelector(".dropdown-item .position-absolute")
+}
+
 function mostrarProducto(p) {
     let cat = document.getElementById("category");
     let des = document.getElementById("descripcion"); 
@@ -48,7 +53,6 @@ function mostrarProducto(p) {
                     <p class="text-muted fs-6 mb-0">${p.soldCount} productos vendidos.</p>
                     <button id="comprar" class="card-footer mt-3 py-3 px-auto border rounded border-0 fs-5">Comprar</button>`;
 
-    
     document.getElementById("comprar").addEventListener("click", function() {
         guardarProductosCarrito(p);
         window.location.href="cart.html";
@@ -56,15 +60,15 @@ function mostrarProducto(p) {
 }            
 
 function guardarProductosCarrito(p) {
-    const producto = {name: p.name, cost: p.cost, image: p.images, description: p.description, currency: p.currency, cantidad: 1}
+    const producto = {
+        id: p.id,
+        name: p.name,
+        cost: p.cost, 
+        image: p.images, 
+        currency: p.currency, 
+        cantidad: 1}
     let cart = JSON.parse(localStorage.getItem('cart')) || [];
-    // if (producto == cart[1]) {
-    //     cantidad = producto.cantidad;
-    //     cantidad++;
-    //     Object.assign(producto, cantidad);
-    // } else {          ES CON EL INCLUDE() CREO. MAÑANA LO VEMOS BAI
-        cart.push(producto);
-    // }
+    cart.push(producto);
     localStorage.setItem('cart', JSON.stringify(cart));
 }
 
