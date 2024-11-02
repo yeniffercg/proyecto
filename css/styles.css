@@ -426,7 +426,12 @@ label{
   background-color: #D88AD4;  
 }
 
-#cantidad 
+#cantidad::-webkit-inner-spin-button,
+#cantidad::-webkit-outer-spin-button 
 {
+  -webkit-appearance: none;
+  margin: 0;
   width: 3em;
 }
+
+#cantidad { -moz-appearance:textfield; }
