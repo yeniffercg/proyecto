@@ -108,13 +108,13 @@ function calcularSubtotal(cart){
     subtotalUSD = document.getElementById("subtotalUSD");
     USD = (product) => (product).currency == "USD";
     UYU = (product) => (product).currency == "UYU";
-    // cantidad = product.cantidad;
+    cantidad = cart[index].product.cantidad;
     total = 0;
     
     if(cart.every(USD) || cart.every(UYU)){
         cart.forEach((product) => {
           
-            total += product.cost; //* cantidad;
+            total += product.cost * cantidad;
             subtotal.innerHTML = `${product.currency}` + ' ' + total;
         });
     }else{
@@ -123,12 +123,12 @@ function calcularSubtotal(cart){
         totalUSD = 0;
         totalUYU = 0;
         productsUSD.forEach((product) => {
-            totalUYU += product.cost * 41; //* product;
-            totalUSD += product.cost //* product.cantidad;
+            totalUYU += product.cost * 41 * product;
+            totalUSD += product.cost * product.cantidad;
         });
         productsUYU.forEach((product) => {
-            totalUYU += product.cost; //* product.cantidad;
-            totalUSD += Math.floor(product.cost / 41) //* product.cantidad;
+            totalUYU += product.cost * product.cantidad;
+            totalUSD += Math.floor(product.cost / 41) * product.cantidad;
         });
         subtotal.innerHTML = 'UYU ' + totalUSD;
         subtotalUSD.innerHTML = 'USD ' + totalUSD;
