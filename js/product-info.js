@@ -55,16 +55,8 @@ function mostrarProducto(p) {
                      border rounded border-0 fs-5">Comprar</button>`;
 
     document.getElementById("comprar").addEventListener("click", function() {
-        const cart = JSON.parse(localStorage.getItem('cart'));
-        const index = cart.findIndex( product => product.id === p.id );
-        if(index >= 0) {
-            cart[index].cantidad += 1;
-        } else {
-            guardarProductosCarrito(p);
-            cart = JSON.parse(localStorage.getItem('cart'));
-        }
-        localStorage.setItem('cart', JSON.stringify(cart));
-        window.location.href="cart.html"
+        guardarProductosCarrito(p);
+        window.location.href="cart.html";
     });       
 }            
 
