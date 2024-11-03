@@ -159,46 +159,17 @@ document.getElementById("vaciarCarrito").addEventListener("click",function() {
     carritoVacio();
 })
 
-document.addEventListener("DOMContentLoaded", function() {
-    actualizarBadgeCarrito();
-});
 
-function actualizarBadgeCarrito() {
-    const cart = JSON.parse(localStorage.getItem("cart")) || [];
-    let totalItems = 0;
+//document.addEventListener("DOMContentLoaded", function() { actualizarBadgeCarrito(); });
 
-    cart.forEach(product => {
-        totalItems += product.cantidad;
-    });
+// function actualizarBadgeCarrito() {  const cart = JSON.parse(localStorage.getItem("cart")) || []; let totalItems = 0; cart.forEach(product => {totalItems += product.cantidad;});const cartBadge = document.querySelector(".dropdown-item.position-relative span"); if (cartBadge) {  cartBadge.textContent = totalItems;}}
 
-    const cartBadge = document.querySelector(".dropdown-item.position-relative span");
-    
-    if (cartBadge) {
-        cartBadge.textContent = totalItems;
-    }
-}
+//document.getElementById("vaciarCarrito").addEventListener("click", function() { actualizarBadgeCarrito();});
 
-document.getElementById("vaciarCarrito").addEventListener("click", function() {
-    actualizarBadgeCarrito();
-});
+//document.getElementById("contCompra").addEventListener("click", function() { actualizarBadgeCarrito();});
 
-document.getElementById("contCompra").addEventListener("click", function() {
-    actualizarBadgeCarrito();
-});
-
-function actualizarCantidad(index, cambio) {
-    const cart = JSON.parse(localStorage.getItem("cart"));
-    cart[index].cantidad = Math.max(1, cart[index].cantidad + cambio);
-    
-    localStorage.setItem("cart", JSON.stringify(cart));
-    
-    actualizarBadgeCarrito();  
-}
-window.addEventListener("storage", function(event) {
-    if (event.key === "cart") {
-        actualizarBadgeCarrito();
-    }
-});
+//function actualizarCantidad(index, cambio) { const cart = JSON.parse(localStorage.getItem("cart"));cart[index].cantidad = Math.max(1, cart[index].cantidad + cambio);     localStorage.setItem("cart", JSON.stringify(cart)); actualizarBadgeCarrito();   }
+// window.addEventListener("storage", function(event) { if (event.key === "cart") { actualizarBadgeCarrito(); } });
 
 //document.getElementById("finCompra").addEventListener("click", function() {});
 
