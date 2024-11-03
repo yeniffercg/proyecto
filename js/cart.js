@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", function() {
     if (!cart || cart.length == 0){
         carritoVacio()
     } else {
-        miCarrito();
+        cantidadCarrito();
         cart.forEach((product, index) => {
             list.innerHTML += `
                 <div class="list-group-item list-group-item-action cursor-active">
@@ -19,15 +19,20 @@ document.addEventListener("DOMContentLoaded", function() {
                                 <h4 class="mb-1">${product.name}</h4>
                                 <h4>${product.currency} ${product.cost}</h4>
                             </div>
-                            <div class="d-inline">
-                                <div id="cant" class="d-inline">
-                                    <button onclick="actualizarCantidad(${index}, -1)">-</button>                                    
+                            <div class="d-inline d-flex justify-content-between">
+                                <div id="cant" class="d-inline divCantidad rounded-pill border">
+                                    <button onclick="actualizarCantidad(${index}, -1)" class="btnCantidad ps-3">
+                                        <i class="fas fa-minus"></i>
+                                    </button>                                    
                                     <input type="number" id="input-cantidad-${index}" min="1" max="100" name="quantity"
-                                    value="${product.cantidad}" readonly>
-                                    <button onclick="actualizarCantidad(${index}, 1)">+</button>
+                                     value="${product.cantidad}" readonly class="form-control text-center d-inline
+                                     inputCantidad bg-transparent">
+                                    <button onclick="actualizarCantidad(${index}, 1)" class="btnCantidad pe-3">
+                                        <i class="fas fa-plus"></i>
+                                    </button>
                                 </div>
                                 <svg onclick="removeItem(${product.id})" xmlns="http://www.w3.org/2000/svg" width="25" 
-                                height="30" fill="currentColor" class="bi bi-trash3" viewBox="0 0 16 16">
+                                height="30" fill="currentColor" class="bi bi-trash3 mb-1" viewBox="0 0 16 16">
                                     <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5M11 2.5v-1A1.5 1.5 0 0
                                     0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 
                                     4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1zm1.958 1-.846
@@ -54,7 +59,7 @@ function setProdID(id){
     window.location = "product-info.html"
 }
 
-function miCarrito(){
+function cantidadCarrito(){
     miCarrito = document.getElementById("miCarrito");
     cart = JSON.parse(localStorage.getItem('cart'));
     if (cart || cart.length !== 0){
@@ -62,8 +67,13 @@ function miCarrito(){
         cart.forEach((product) => {
             items += product.cantidad;
         });
-    miCarrito.innerHTML += `
-    <h1 class="mb-4"> Mi carrito (<span id="cantidadCarrito">${items}</span>)</h1>`;
+        if(items > 1) {
+            miCarrito.innerHTML = `
+            <h4 class="mb-4"> Mi carrito (<span id="cantidadCarrito">${items}</span> productos)</h4>`;
+        } else {
+            miCarrito.innerHTML = `
+            <h4 class="mb-4"> Mi carrito (<span id="cantidadCarrito">${items}</span> producto)</h4>`;
+        }
     }
 }
 
@@ -117,15 +127,9 @@ function actualizarCantidad(index, cambio) {
     const nuevoSubtotal = (cart[index].currency + ' ' + cart[index].cost * cart[index].cantidad);
     document.getElementById(`subtotal-${index}`).textContent = nuevoSubtotal;
     document.getElementById(`cantidadResume${index}`).textContent = cantidadInput.value;
-
-    let items = 0;
-    cart.forEach((product) => {
-        items += product.cantidad;
-    });
-
-    document.getElementById(`cantidadCarrito`).textContent = items;
+    
     localStorage.setItem('cart', JSON.stringify(cart));
-
+    cantidadCarrito();
     calcularSubtotal(cart, index);
 }
 
