@@ -4,22 +4,10 @@ document.addEventListener("DOMContentLoaded", function() {
     const resumeList = document.getElementById("resume-list");
 
     if (!cart || cart.length == 0){
-        resume = document.getElementById("resume");
-        resume.style.display = "none";
-        list.innerHTML += `
-            <div class="container">
-                <div class="alert alert-danger text-center" role="alert">
-                    <h4 class="alert-heading">Aún no tienes productos en el carrito.</h4>
-                </div>
-                <div class="d-md-flex justify-content-md-center">
-                    <a href="categories.html"><button class="mt-3 py-3 px-4 border rounded border-0 fs-5"
-                     id="comCompra">Comenzar a comprar</button></a>
-                </div>
-            </div>`;
-        console.error ("No hay elementos en el local storage!")
+        carritoVacio()
     } else {
-        console.log(cart);
-        cart.forEach((product) => {
+        miCarrito();
+        cart.forEach((product, index) => {
             list.innerHTML += `
                 <div class="list-group-item list-group-item-action cursor-active">
                     <div class="row">
@@ -31,30 +19,33 @@ document.addEventListener("DOMContentLoaded", function() {
                                 <h4 class="mb-1">${product.name}</h4>
                                 <h4>${product.currency} ${product.cost}</h4>
                             </div>
-                            <div>
-                                <label for="quantity"></label>
-                                <input type="number" id="cantidad" name="quantity" value="1">
-                                <button id="sumar">+</button><button id="restar">-</button>
+                            <div class="d-inline">
+                                <div id="cant" class="d-inline">
+                                    <button onclick="actualizarCantidad(${index}, -1)">-</button>                                    
+                                    <input type="number" id="input-cantidad-${index}" min="1" max="100" name="quantity"
+                                    value="${product.cantidad}" readonly>
+                                    <button onclick="actualizarCantidad(${index}, 1)">+</button>
+                                </div>
                                 <svg onclick="removeItem(${product.id})" xmlns="http://www.w3.org/2000/svg" width="25" 
-                                 height="30" fill="currentColor" 
-                                class="bi bi-trash3" viewBox="0 0 16 16">
+                                height="30" fill="currentColor" class="bi bi-trash3" viewBox="0 0 16 16">
                                     <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5M11 2.5v-1A1.5 1.5 0 0
-                                     0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 
-                                     4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1zm1.958 1-.846
-                                      10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5zm-7.487 1a.5.5 0 0 1
-                                       .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1
-                                        .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47M8 4.5a.5.5 0 0 1
-                                         .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5"/>
+                                    0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 
+                                    4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1zm1.958 1-.846
+                                    10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5zm-7.487 1a.5.5 0 0 1
+                                    .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1
+                                    .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47M8 4.5a.5.5 0 0 1
+                                    .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5"/>
                                 </svg>
                             </div>
                         </div>
                     </div>
                 </div>`;
             resumeList.innerHTML += `
-                <h5 class="fw-normal my-3">${product.name}<span class="float-end">${product.currency} ${product.cost}</span></h5>`;
+                <h5 class="fw-normal my-3">${product.name} (<span id="cantidadResume${index}">${product.cantidad}</span>)
+                <span class="float-end" id="subtotal-${index}">
+                 ${product.currency} ${(product.cost * product.cantidad)}</span></h5>`;
+            calcularSubtotal(cart, index);
         });
-        calcularSubtotal(cart);
-        actualizarSubtotal(cart);
     }
 });
 
@@ -63,7 +54,19 @@ function setProdID(id){
     window.location = "product-info.html"
 }
 
-//Funcionalidad de trash
+function miCarrito(){
+    miCarrito = document.getElementById("miCarrito");
+    cart = JSON.parse(localStorage.getItem('cart'));
+    if (cart || cart.length !== 0){
+        let items = 0;
+        cart.forEach((product) => {
+            items += product.cantidad;
+        });
+    miCarrito.innerHTML += `
+    <h1 class="mb-4"> Mi carrito (<span id="cantidadCarrito">${items}</span>)</h1>`;
+    }
+}
+
 function removeItem(id){
     const cart = JSON.parse(localStorage.getItem('cart'));
     const index = cart.findIndex( product => product.id === id );
@@ -72,49 +75,17 @@ function removeItem(id){
     location.reload();
 }
 
-//Actualiza precio segun cantidad
-document.addEventListener("DOMContentLoaded", function(){
-    valorInicial = document.getElementById("cantidad");
-    btnSumar = document.getElementById("sumar")
-    btnRestar = document.getElementById("restar")
-    cantidad = Number(valorInicial.value);
-
-    actualizarSubtotal = () => {
-        calcularSubtotal(cart)
-    }
-
-    btnSumar.addEventListener('click', function (){
-        cantidad += 1;
-        valorInicial.value = cantidad;
-        actualizarSubtotal();
-
-});
-    btnRestar.addEventListener('click', function (){
-        if (cantidad > 0) {
-            cantidad -= 1;
-            valorInicial.value = cantidad;
-            actualizarSubtotal();
-        }
-   
-   })
-
- 
- });
-
-
-
-function calcularSubtotal(cart){
+function calcularSubtotal(cart, index){
+    cart = JSON.parse(localStorage.getItem('cart'));
     subtotal = document.getElementById("subtotal");
     subtotalUSD = document.getElementById("subtotalUSD");
     USD = (product) => (product).currency == "USD";
     UYU = (product) => (product).currency == "UYU";
-    cantidadInput = document.getElementById("cantidad");
-    cantidad = Number(cantidadInput.value) || 0;
+    cantidad = cart[index].cantidad;
     total = 0;
     
     if(cart.every(USD) || cart.every(UYU)){
         cart.forEach((product) => {
-          
             total += product.cost * cantidad;
             subtotal.innerHTML = `${product.currency}` + ' ' + total;
         });
@@ -131,28 +102,62 @@ function calcularSubtotal(cart){
             totalUYU += product.cost * product.cantidad;
             totalUSD += Math.floor(product.cost / 41) * product.cantidad;
         });
-        subtotal.innerHTML = 'UYU ' + totalUSD;
+        subtotal.innerHTML = 'UYU ' + totalUYU;
         subtotalUSD.innerHTML = 'USD ' + totalUSD;
-
-        actualizarSubtotal(cart);
     } 
 }
 
+function actualizarCantidad(index, cambio) {
+    const cart = JSON.parse(localStorage.getItem('cart'));
+    cart[index].cantidad = Math.max(1, cart[index].cantidad + cambio);
 
+    const cantidadInput = document.getElementById(`input-cantidad-${index}`);
+    cantidadInput.value = cart[index].cantidad;
 
+    const nuevoSubtotal = (cart[index].currency + ' ' + cart[index].cost * cart[index].cantidad);
+    document.getElementById(`subtotal-${index}`).textContent = nuevoSubtotal;
+    document.getElementById(`cantidadResume${index}`).textContent = cantidadInput.value;
 
+    let items = 0;
+    cart.forEach((product) => {
+        items += product.cantidad;
+    });
 
-   function actualizarSubtotal(cart){
-      const cantidades = document.getElementById("cantidad");
-      cantidades.addEventListener("input", function(e) {
-         cantidad = e.target.value;
-         cart => (product).cantidad == cantidad;
-     });
- }
+    document.getElementById(`cantidadCarrito`).textContent = items;
+    localStorage.setItem('cart', JSON.stringify(cart));
+
+    calcularSubtotal(cart, index);
+}
 
 document.getElementById("contCompra").addEventListener("click", function() {
     window.location.href = "categories.html";
 });
+
+
+function carritoVacio() {
+    const list = document.getElementById("product-list");
+    resume = document.getElementById("resume");
+    miCarrito = document.getElementById("miCarrito");
+    resume.style.display = "none";
+    miCarrito.style.display = "none";
+    list.innerHTML = "";
+    list.innerHTML += `
+        <div class="container">
+            <div class="alert text-center" role="alert">
+                <h4 class="alert-heading">Aún no tienes productos en el carrito.</h4>
+            </div>
+            <div class="d-md-flex justify-content-md-center">
+                <a href="categories.html"><button class="mt-3 py-3 px-4 border rounded border-0 fs-5"
+                 id="comCompra">Comenzar a comprar</button></a>
+            </div>
+        </div>`;
+    console.error ("No hay elementos en el local storage!");
+}
+
+document.getElementById("vaciarCarrito").addEventListener("click",function() {
+    localStorage.removeItem("cart");
+    carritoVacio();
+})
 
 //document.getElementById("finCompra").addEventListener("click", function() {});
 

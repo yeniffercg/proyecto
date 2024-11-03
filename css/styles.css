@@ -414,11 +414,10 @@ label{
   width: 100%;
 }
 
-#contCompra{
+#contCompra, #vaciarCarrito{
   color: #D88AD4;
   background-color: white;
   border: solid #D88AD4;
-  width: 100%;
 }
 
 #comCompra{
@@ -426,7 +425,9 @@ label{
   background-color: #D88AD4;  
 }
 
-#cantidad 
-{
-  width: 3em;
-}
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+    }
+input[type=number] { appearance:textfield; }
