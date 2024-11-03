@@ -4,21 +4,9 @@ document.addEventListener("DOMContentLoaded", function() {
     const resumeList = document.getElementById("resume-list");
 
     if (!cart || cart.length == 0){
-        resume = document.getElementById("resume");
-        resume.style.display = "none";
-        list.innerHTML += `
-            <div class="container">
-                <div class="alert text-center" role="alert">
-                    <h4 class="alert-heading">Aún no tienes productos en el carrito.</h4>
-                </div>
-                <div class="d-md-flex justify-content-md-center">
-                    <a href="categories.html"><button class="mt-3 py-3 px-4 border rounded border-0 fs-5"
-                     id="comCompra">Comenzar a comprar</button></a>
-                </div>
-            </div>`;
-        console.error ("No hay elementos en el local storage!")
+        carritoVacio()
     } else {
-        console.log(cart);
+        miCarrito();
         cart.forEach((product, index) => {
             list.innerHTML += `
                 <div class="list-group-item list-group-item-action cursor-active">
@@ -53,11 +41,11 @@ document.addEventListener("DOMContentLoaded", function() {
                     </div>
                 </div>`;
             resumeList.innerHTML += `
-                <h5 class="fw-normal my-3">${product.name}<span class="float-end" id="subtotal-${index}">
+                <h5 class="fw-normal my-3">${product.name} (<span id="cantidadResume${index}">${product.cantidad}</span>)
+                <span class="float-end" id="subtotal-${index}">
                  ${product.currency} ${(product.cost * product.cantidad)}</span></h5>`;
+            calcularSubtotal(cart, index);
         });
-        calcularSubtotal(cart);
-        // actualizarSubtotal(cart);
     }
 });
 
@@ -66,7 +54,19 @@ function setProdID(id){
     window.location = "product-info.html"
 }
 
-//Funcionalidad de trash
+function miCarrito(){
+    miCarrito = document.getElementById("miCarrito");
+    cart = JSON.parse(localStorage.getItem('cart'));
+    if (cart || cart.length !== 0){
+        let items = 0;
+        cart.forEach((product) => {
+            items += product.cantidad;
+        });
+    miCarrito.innerHTML += `
+    <h1 class="mb-4"> Mi carrito (<span id="cantidadCarrito">${items}</span>)</h1>`;
+    }
+}
+
 function removeItem(id){
     const cart = JSON.parse(localStorage.getItem('cart'));
     const index = cart.findIndex( product => product.id === id );
@@ -75,45 +75,17 @@ function removeItem(id){
     location.reload();
 }
 
-// //Actualiza precio segun cantidad
-// document.addEventListener("DOMContentLoaded", function(){
-//     valorInicial = document.getElementById("cantidad");
-//     btnSumar = document.getElementById("sumar")
-//     btnRestar = document.getElementById("restar")
-//     // cantidad = Number(valorInicial.value);
-
-//     actualizarSubtotal = () => {
-//         calcularSubtotal(cart)
-//     }
-
-//     btnSumar.addEventListener('click', function (){
-//         cantidad ++;
-//         valorInicial.value = cantidad;
-//         actualizarSubtotal();
-
-//     });
-//     btnRestar.addEventListener('click', function (){
-//         if (cantidad > 0) {
-//             cantidad --;
-//             valorInicial.value = cantidad;
-//             actualizarSubtotal();
-//         }
-//    })
-// }); https://meet27.webex.com/meet/pr27996126197
-
-
-
-function calcularSubtotal(cart){
+function calcularSubtotal(cart, index){
+    cart = JSON.parse(localStorage.getItem('cart'));
     subtotal = document.getElementById("subtotal");
     subtotalUSD = document.getElementById("subtotalUSD");
     USD = (product) => (product).currency == "USD";
     UYU = (product) => (product).currency == "UYU";
-    cantidad = cart[index].product.cantidad;
+    cantidad = cart[index].cantidad;
     total = 0;
     
     if(cart.every(USD) || cart.every(UYU)){
         cart.forEach((product) => {
-          
             total += product.cost * cantidad;
             subtotal.innerHTML = `${product.currency}` + ' ' + total;
         });
@@ -123,32 +95,19 @@ function calcularSubtotal(cart){
         totalUSD = 0;
         totalUYU = 0;
         productsUSD.forEach((product) => {
-            totalUYU += product.cost * 41 * product;
+            totalUYU += product.cost * 41 * product.cantidad;
             totalUSD += product.cost * product.cantidad;
         });
         productsUYU.forEach((product) => {
             totalUYU += product.cost * product.cantidad;
             totalUSD += Math.floor(product.cost / 41) * product.cantidad;
         });
-        subtotal.innerHTML = 'UYU ' + totalUSD;
+        subtotal.innerHTML = 'UYU ' + totalUYU;
         subtotalUSD.innerHTML = 'USD ' + totalUSD;
-
-        //actualizarSubtotal(cart);
     } 
 }
 
-// guardar nueva cantidad en el local
-// // boton vaciar carrito
-
-//    function actualizarSubtotal(cart){
-//       const cantidades = document.getElementById("cantidad");
-//       cantidades.addEventListener("input", function(e) {
-//          cantidad = e.target.value;
-//          cart => (product).cantidad == cantidad;
-//      });
-//  }
-
- function actualizarCantidad(index, cambio) {
+function actualizarCantidad(index, cambio) {
     const cart = JSON.parse(localStorage.getItem('cart'));
     cart[index].cantidad = Math.max(1, cart[index].cantidad + cambio);
 
@@ -157,49 +116,48 @@ function calcularSubtotal(cart){
 
     const nuevoSubtotal = (cart[index].currency + ' ' + cart[index].cost * cart[index].cantidad);
     document.getElementById(`subtotal-${index}`).textContent = nuevoSubtotal;
-   
+    document.getElementById(`cantidadResume${index}`).textContent = cantidadInput.value;
+
+    let items = 0;
+    cart.forEach((product) => {
+        items += product.cantidad;
+    });
+
+    document.getElementById(`cantidadCarrito`).textContent = items;
     localStorage.setItem('cart', JSON.stringify(cart));
 
-    calcularSubtotal(cart);
-    // actualizarResumen(cart);
+    calcularSubtotal(cart, index);
 }
-
-// function actualizarTotales() {
-
-//     let unidades = 0;
-//     let precio = 0;
-
-//     if (products.length > 0) {
-//         products.forEach(producto => {
-//             unidades += producto.quantity;
-//             precio += producto.cost * producto.quantity;
-//         });
-//     }
-
-//     const unidadesElement = document.getElementById("unidades");
-//     const precioElement = document.getElementById("precio");
-//     const cartCountElement = document.getElementById("cart-count");
-
-//     if (unidadesElement && precioElement) {
-//         unidadesElement.innerText = unidades;
-//         precioElement.innerText = precio;
-//     }
-
-//     // Actualiza el badge del carrito
-//     if (cartCountElement) {
-//         cartCountElement.innerText = unidades;
-//         if (unidades === 0) {
-//             cartCountElement.style.display = "none";
-//          } else { 
-//             cartCountElement.style.display = "inline-block";
-//          }
-//     }
-// }
-
 
 document.getElementById("contCompra").addEventListener("click", function() {
     window.location.href = "categories.html";
 });
+
+
+function carritoVacio() {
+    const list = document.getElementById("product-list");
+    resume = document.getElementById("resume");
+    miCarrito = document.getElementById("miCarrito");
+    resume.style.display = "none";
+    miCarrito.style.display = "none";
+    list.innerHTML = "";
+    list.innerHTML += `
+        <div class="container">
+            <div class="alert text-center" role="alert">
+                <h4 class="alert-heading">Aún no tienes productos en el carrito.</h4>
+            </div>
+            <div class="d-md-flex justify-content-md-center">
+                <a href="categories.html"><button class="mt-3 py-3 px-4 border rounded border-0 fs-5"
+                 id="comCompra">Comenzar a comprar</button></a>
+            </div>
+        </div>`;
+    console.error ("No hay elementos en el local storage!");
+}
+
+document.getElementById("vaciarCarrito").addEventListener("click",function() {
+    localStorage.removeItem("cart");
+    carritoVacio();
+})
 
 //document.getElementById("finCompra").addEventListener("click", function() {});
 
