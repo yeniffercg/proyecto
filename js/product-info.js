@@ -51,7 +51,8 @@ function mostrarProducto(p) {
                     <p class="fs-5 mb-3">${p.description}</p>
                     <p class="fw-bold fs-2 mb-2">${p.currency} ${p.cost}</p>
                     <p class="text-muted fs-6 mb-0">${p.soldCount} productos vendidos.</p>
-                    <button id="comprar" class="card-footer mt-3 py-3 px-auto border rounded border-0 fs-5">Comprar</button>`;
+                    <button id="comprar" class="card-footer mt-3 py-3 px-auto 
+                     border rounded border-0 fs-5">Comprar</button>`;
 
     document.getElementById("comprar").addEventListener("click", function() {
         guardarProductosCarrito(p);
