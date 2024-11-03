@@ -198,7 +198,11 @@ function actualizarCantidad(index, cambio) {
     
     actualizarBadgeCarrito();  
 }
-
+window.addEventListener("storage", function(event) {
+    if (event.key === "cart") {
+        actualizarBadgeCarrito();
+    }
+});
 
 //document.getElementById("finCompra").addEventListener("click", function() {});
 

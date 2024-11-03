@@ -55,3 +55,36 @@ const isNightMode = localStorage.getItem('nightMode');
 if (isNightMode === 'true') {
   document.body.classList.toggle('night-mode');
 }
+
+document.addEventListener("DOMContentLoaded", function() {
+  actualizarBadgeCarrito();
+});
+
+function actualizarBadgeCarrito() {
+  const cart = JSON.parse(localStorage.getItem("cart")) || [];
+  let totalItems = 0;
+
+  cart.forEach(product => {
+      totalItems += product.cantidad;
+  });
+
+  const cartBadge = document.querySelector(".dropdown-item.position-relative span");
+  
+  if (cartBadge) {
+      cartBadge.textContent = totalItems;
+  }
+}
+
+function actualizarCantidad(index, cambio) {
+  const cart = JSON.parse(localStorage.getItem("cart"));
+  cart[index].cantidad = Math.max(1, cart[index].cantidad + cambio);
+  
+  localStorage.setItem("cart", JSON.stringify(cart));
+  
+  actualizarBadgeCarrito();  
+}
+window.addEventListener("storage", function(event) {
+  if (event.key === "cart") {
+      actualizarBadgeCarrito();
+  }
+});
