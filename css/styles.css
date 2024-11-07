@@ -411,7 +411,7 @@ label{
   }
 }
 
-#comprar, #finCompra{
+#comprarProd, #comprarCart{
   color: white;
   background-color: #D88AD4;  
   width: 100%;
@@ -423,9 +423,10 @@ label{
   border: solid #D88AD4;
 }
 
-#comCompra{
+#comCompra, .pinkButton, .pinkButton:hover {
   color: white;
   background-color: #D88AD4;  
+  border: none;
 }
 
 input[type=number]::-webkit-inner-spin-button,
@@ -453,4 +454,10 @@ input[type=number] { appearance:textfield; }
 
 .bi-trash3 {
   color: #4d4d4d;
+}
+
+.modal-lg {
+  margin-top: 6%;
+  margin-left: 7%;
+  width: 55%;
 }

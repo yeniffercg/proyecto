@@ -57,10 +57,77 @@
         <h4 class="mt-1 text-end fs-6 text-muted" id="subtotalUSD"></h4>
       </div>
       <div>
-        <button id="finCompra" class="mt-3 py-3 px-auto border rounded border-0 fs-5 pinkButton w-100">Finalizar compra</button>
+        <button type="button" class="btn mt-3 py-3 px-auto border rounded border-0 fs-5 w-100"
+         data-bs-toggle="modal" data-bs-target="#comprarModal" id="comprarCart">
+          Comprar
+        </button>
         <div class="mt-3 w-100 d-flex justify-content-between">
           <button id="contCompra" type="button" class="btn py-3 px-3 rounded fs-5">Continuar comprando</button>
           <button id="vaciarCarrito" type="button" class="btn py-3 px-3 rounded fs-5"> Vaciar carrito</button>
+        </div>
+        <div class="modal fade" id="comprarModal" aria-hidden="true" aria-labelledby="comprarModal" tabindex="-1">
+          <div class="modal-lg modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h1 class="modal-title fs-5" id="comprarModal">Métodos de pago</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body row mx-2">
+                <div class="col-6">
+                  <form id="formularioPago">
+                    <label> <input type="radio" name="metodoPago" value="tarjetaCredito" checked>
+                      Tarjeta de crédito
+                      <img scr="img/master.png" alt="Mastercard" class="icono-pago">
+                      <img scr="img/visa.png" alt="Visa" class="icono-pago">
+                      <img scr="img/oca.png" alt="OCA" class="icono-pago">
+                    </label>
+                    <label> <input type="radio" name="metodoPago" value="transferenciaBancaria">
+                      Transferencia Bancaria
+                      
+                  </form>
+                </div>
+                <div id="form" class="row col-6 g-3">
+                  <div>
+                    <input type="text" id="name-compra" class="form-control bg-transparent" placeholder="Nombre" name="name-compra" required>
+                  </div>
+                  <div>
+                    <input type="text" id="last-name-compra" class="form-control bg-transparent" placeholder="Apellido" name="last-name-compra">
+                  </div>
+                  <div>
+                    <input type="number" id="ci" class="form-control bg-transparent" placeholder="Cédula de identidad" name="ci" required>
+                  </div>
+                  <div>
+                    <input type="number" id="num-tarjeta" class="form-control bg-transparent" placeholder="Número de tarjeta" name="num-tarjeta">
+                  </div>
+                  <div>
+                    <input type="number" id="codigo-seguridad" class="form-control bg-transparent" placeholder="Código de seguridad" name="codigo-seguridad" required>
+                  </div>
+                  <div>
+                    <input type="number" id="vencimiento" class="form-control bg-transparent" placeholder="Vencimiento" name="vencimiento" required>
+                  </div>
+                  <p class="text-muted fs-6 fst-italic">*Campos obligatorios</p>
+              </div>
+              <div class="modal-footer">
+                <button class="btn pinkButton" data-bs-target="#comprarModal2" data-bs-toggle="modal">Continuar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal fade" id="comprarModal2" aria-hidden="true" aria-labelledby="comprarModal2" tabindex="-1">
+          <div class="modal-lg modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h1 class="modal-title fs-5" id="comprarModal2">Modal 2</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                Hide this modal and show the first with the button below.
+              </div>
+              <div class="modal-footer">
+                <button class="btn pinkButton">Finalizar compra</button>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
