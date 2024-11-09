@@ -461,3 +461,12 @@ input[type=number] { appearance:textfield; }
   margin-left: 7%;
   width: 55%;
 }
+
+.bi-chevron-left {
+  color: #7f7f7f;
+  cursor: pointer;
+}
+
+#back{
+  :hover {color: black;}
+}

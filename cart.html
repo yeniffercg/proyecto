@@ -73,20 +73,22 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
               <div class="modal-body row mx-2">
-                <div class="col-6">
+                <div class="col-6 mt-3">
                   <form id="formularioPago">
-                    <label> <input type="radio" name="metodoPago" value="tarjetaCredito" checked>
+                    <label>
+                      <input type="radio" name="metodoPago" value="tarjetaCredito" checked>
                       Tarjeta de crédito
-                      <img scr="img/master.png" alt="Mastercard" class="icono-pago">
-                      <img scr="img/visa.png" alt="Visa" class="icono-pago">
-                      <img scr="img/oca.png" alt="OCA" class="icono-pago">
                     </label>
-                    <label> <input type="radio" name="metodoPago" value="transferenciaBancaria">
+                    <img src="/img/master.png" alt="Mastercard" class="icono-pago">
+                    <img src="/img/visa.png" alt="Visa" class="icono-pago">
+                    <img src="/img/oca.png" alt="OCA" class="icono-pago">
+                    <label>
+                      <input type="radio" name="metodoPago" value="transferenciaBancaria">
                       Transferencia Bancaria
-                      
+                    </label>  
                   </form>
                 </div>
-                <div id="form" class="row col-6 g-3">
+                <div id="form" class="row col-6 g-3 mt-0">
                   <div>
                     <input type="text" id="name-compra" class="form-control bg-transparent" placeholder="Nombre" name="name-compra" required>
                   </div>
@@ -106,6 +108,7 @@
                     <input type="number" id="vencimiento" class="form-control bg-transparent" placeholder="Vencimiento" name="vencimiento" required>
                   </div>
                   <p class="text-muted fs-6 fst-italic">*Campos obligatorios</p>
+                </div>
               </div>
               <div class="modal-footer">
                 <button class="btn pinkButton" data-bs-target="#comprarModal2" data-bs-toggle="modal">Continuar</button>
@@ -117,11 +120,54 @@
           <div class="modal-lg modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
-                <h1 class="modal-title fs-5" id="comprarModal2">Modal 2</h1>
+                <div id="back" data-bs-target="#comprar" data-bs-toggle="modal" data-bs-dismiss="modal">
+                  <svg odalxmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-chevron-left" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0"/>
+                  </svg>
+                </div>
+                <h1 class="modal-title fs-5 ms-2" id="comprarModal2">Datos de envío</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
-              <div class="modal-body">
-                Hide this modal and show the first with the button below.
+              <div class="modal-body row mx-2">
+                <div id="form-envio" class="row col-6 g-3 mt-0">
+                  <div>
+                    <input type="text" id="departamento" class="form-control bg-transparent" placeholder="Departamento" name="departamento" required>
+                  </div>
+                  <div>
+                    <input type="text" id="localidad" class="form-control bg-transparent" placeholder="Localidad" name="localidad" required>
+                  </div>
+                  <div>
+                    <input type="number" id="calle" class="form-control bg-transparent" placeholder="Calle" name="calle" required>
+                  </div>
+                  <div>
+                    <input type="number" id="numero-puerta" class="form-control bg-transparent" placeholder="Número de puerta" name="num-puerta" required>
+                  </div>
+                  <div>
+                    <input type="number" id="esquina" class="form-control bg-transparent" placeholder="Esquina" name="esquina" required>
+                  </div>
+                  <div>
+                    <input type="number" id="referencias" class="form-control bg-transparent" placeholder="Referencias" name="referencias" >
+                  </div>
+                  <p class="text-muted fs-6 fst-italic">*Campos obligatorios</p>
+                </div>
+                <div class="col-6 mt-3 tipo">
+                  <form id="tipo-envio">
+                    <label> 
+                      <input type="radio" id="premium" name="envio" value="Premium" checked> Premium 2 a 5 días (15%) 
+                    </label>
+                    <label>
+                      <input type="radio" id="express" name="envio" value="Express"> Express 5 a 8 días (7%)
+                    </label>
+                    <label>
+                      <input type="radio" id="standard" name="envio" value="Standard"> Standard 12 a 15 días (5%)
+                    </label>
+                  </form>
+                  <div class="subtotal"> 
+                    <h6> Subtotal: </h6>
+                    <h6> Costo de envío: </h6>
+                    <h4 id="total"> Total: </h4>
+                  </div>
+                </div>
               </div>
               <div class="modal-footer">
                 <button class="btn pinkButton">Finalizar compra</button>

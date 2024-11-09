@@ -163,8 +163,35 @@ document.getElementById("vaciarCarrito").addEventListener("click",function() {
     carritoVacio();
 })
 
+function calcularEnvio() {
+    envioPremium = document.getElementById("premium");
+    envioExpress = document.getElementById("express");
+    envioStandard = document.getElementById("standard");
+    subtotalString = document.getElementById("subtotal");
+    subtotal = parseFloat(subtotalString.textContent);
+    precioTotal = document.getElementById("total");
+    costoEnvio = 0;
+    
+    if(envioPremium.checked){
+        costoEnvio = subtotal * 0.15;
+    }
+    if(envioExpress.checked){
+        costoEnvio = subtotal * 0.07;
+    }
+    if(envio.standard.checked){
+        precioTotal = subtotal * 0.05;
+    }
+    total = subtotal + costoEnvio;
+    precioTotal.innerHTML = `$${total.toFixed(2)}`
+}
 
-//document.addEventListener("DOMContentLoaded", function() { actualizarBadgeCarrito(); });
+document.getElementById("tipo-envio").addEventListener("change", calcularEnvio);
+
+
+
+
+
+// document.addEventListener("DOMContentLoaded", function() { actualizarBadgeCarrito(); });
 
 // function actualizarBadgeCarrito() {  const cart = JSON.parse(localStorage.getItem("cart")) || []; let totalItems = 0; cart.forEach(product => {totalItems += product.cantidad;});const cartBadge = document.querySelector(".dropdown-item.position-relative span"); if (cartBadge) {  cartBadge.textContent = totalItems;}}
 
@@ -175,5 +202,10 @@ document.getElementById("vaciarCarrito").addEventListener("click",function() {
 //function actualizarCantidad(index, cambio) { const cart = JSON.parse(localStorage.getItem("cart"));cart[index].cantidad = Math.max(1, cart[index].cantidad + cambio);     localStorage.setItem("cart", JSON.stringify(cart)); actualizarBadgeCarrito();   }
 // window.addEventListener("storage", function(event) { if (event.key === "cart") { actualizarBadgeCarrito(); } });
 
-//document.getElementById("finCompra").addEventListener("click", function() {});
+// document.getElementById("finCompra").addEventListener("submit", function() {
+//     const departamento = document.getElementbyId('departamento').value;
+//     const localidad = document.getElementbyId('localidad').value;
+//     const calle = document.getElementbyId('calle').value; 
+//     const puerta = document.getElementbyId('num-puerta').value;
 
+//    if (!departamento || !localidad || !calle || !puerta) 
