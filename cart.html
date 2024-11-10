@@ -66,40 +66,44 @@
           <button id="vaciarCarrito" type="button" class="btn py-3 px-3 rounded fs-5"> Vaciar carrito</button>
         </div>
         <div class="modal fade" id="comprarModal" aria-hidden="true" aria-labelledby="comprarModal" tabindex="-1">
-          <div class="modal-lg modal-dialog">
+          <div class="modal-lg modal-dialog mt-4">
             <div class="modal-content">
-              <div class="modal-header">
-                <h1 class="modal-title fs-5" id="comprarModal">Métodos de pago</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-              </div>
-              <div class="modal-body row mx-2">
-                <div class="col-6 mt-3">
+              <div class="modal-body row mx-2 pb-4">
+                <div class="pe-1">
+                  <button type="button" class="btn-close float-end" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="col-6 mt-1">
+                  <h1 class="fs-5 mb-3" id="comprarModal">Método de pago</h1>
                   <form id="formularioPago">
-                    <label>
+                    <label class="carrito-label">
                       <input type="radio" name="metodoPago" value="tarjetaCredito" checked>
                       Tarjeta de crédito
                     </label>
-                    <img src="/img/master.png" alt="Mastercard" class="icono-pago">
-                    <img src="/img/visa.png" alt="Visa" class="icono-pago">
-                    <img src="/img/oca.png" alt="OCA" class="icono-pago">
-                    <label>
+                    <img src="img/master.png" alt="Mastercard" class="icono-pago ms-4">
+                    <img src="img/visa.png" alt="Visa" class="icono-pago mx-3">
+                    <img src="img/oca.png" alt="OCA" class="icono-pago">
+                    <label class="carrito-label">
                       <input type="radio" name="metodoPago" value="transferenciaBancaria">
                       Transferencia Bancaria
-                    </label>  
+                    </label>
+                    <img src="img/brou.png" alt="BROU" class="icono-pago2 ms-4">
+                    <img src="img/santander.png" alt="Santander" class="icono-pago2 mx-3">
+                    <img src="img/itau.png" alt="ITAU" class="icono-pago2">
                   </form>
                 </div>
-                <div id="form" class="row col-6 g-3 mt-0">
+                <div id="form-tarjeta" class="row col-6 g-3 mt-0 ms-2">
+                  <h1 class="fs-5 mt-1" id="comprarModal">Datos de la tarjeta</h1>
                   <div>
                     <input type="text" id="name-compra" class="form-control bg-transparent" placeholder="Nombre" name="name-compra" required>
                   </div>
                   <div>
-                    <input type="text" id="last-name-compra" class="form-control bg-transparent" placeholder="Apellido" name="last-name-compra">
+                    <input type="text" id="last-name-compra" class="form-control bg-transparent" placeholder="Apellido" name="last-name-compra" required>
                   </div>
                   <div>
                     <input type="number" id="ci" class="form-control bg-transparent" placeholder="Cédula de identidad" name="ci" required>
                   </div>
                   <div>
-                    <input type="number" id="num-tarjeta" class="form-control bg-transparent" placeholder="Número de tarjeta" name="num-tarjeta">
+                    <input type="number" id="num-tarjeta" class="form-control bg-transparent" placeholder="Número de tarjeta" name="num-tarjeta" required>
                   </div>
                   <div>
                     <input type="number" id="codigo-seguridad" class="form-control bg-transparent" placeholder="Código de seguridad" name="codigo-seguridad" required>
@@ -107,29 +111,28 @@
                   <div>
                     <input type="number" id="vencimiento" class="form-control bg-transparent" placeholder="Vencimiento" name="vencimiento" required>
                   </div>
-                  <p class="text-muted fs-6 fst-italic">*Campos obligatorios</p>
                 </div>
               </div>
               <div class="modal-footer">
-                <button class="btn pinkButton" data-bs-target="#comprarModal2" data-bs-toggle="modal">Continuar</button>
+                <button id="toggle" class="btn pinkButton me-3" data-bs-target="#comprarModal2" data-bs-toggle="modal" data-bs-dismiss="modal">Continuar</button>
               </div>
             </div>
           </div>
         </div>
         <div class="modal fade" id="comprarModal2" aria-hidden="true" aria-labelledby="comprarModal2" tabindex="-1">
-          <div class="modal-lg modal-dialog">
+          <div class="modal-lg modal-dialog mt-4">
             <div class="modal-content">
-              <div class="modal-header">
-                <div id="back" data-bs-target="#comprar" data-bs-toggle="modal" data-bs-dismiss="modal">
-                  <svg odalxmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-chevron-left" viewBox="0 0 16 16">
-                    <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0"/>
-                  </svg>
+              <div class="modal-body row mx-2 pb-4">
+                <div class="d-flex justify-content-between px-1 pe-1 ps-0">
+                  <button id="back" class="btn" data-bs-target="#comprarModal" data-bs-toggle="modal" data-bs-dismiss="modal">
+                    <svg odalxmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-chevron-left" viewBox="0 0 16 16">
+                      <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0"/>
+                    </svg>
+                  </button>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <h1 class="modal-title fs-5 ms-2" id="comprarModal2">Datos de envío</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-              </div>
-              <div class="modal-body row mx-2">
-                <div id="form-envio" class="row col-6 g-3 mt-0">
+                <div id="form-envio" class="row col-6 g-3 mt-3">
+                  <h1 class="fs-5 mt-0" id="comprarModal2">Datos de envío</h1>
                   <div>
                     <input type="text" id="departamento" class="form-control bg-transparent" placeholder="Departamento" name="departamento" required>
                   </div>
@@ -148,21 +151,21 @@
                   <div>
                     <input type="number" id="referencias" class="form-control bg-transparent" placeholder="Referencias" name="referencias" >
                   </div>
-                  <p class="text-muted fs-6 fst-italic">*Campos obligatorios</p>
                 </div>
-                <div class="col-6 mt-3 tipo">
+                <div class="col-6 mt-3 ms-3 d-flex flex-column justify-content-between">
                   <form id="tipo-envio">
-                    <label> 
+                    <h1 class="fs-5 mb-3" id="comprarModal2">Tipo de envío</h1>
+                    <label class="carrito-label"> 
                       <input type="radio" id="premium" name="envio" value="Premium" checked> Premium 2 a 5 días (15%) 
                     </label>
-                    <label>
+                    <label class="carrito-label">
                       <input type="radio" id="express" name="envio" value="Express"> Express 5 a 8 días (7%)
                     </label>
-                    <label>
+                    <label class="carrito-label">
                       <input type="radio" id="standard" name="envio" value="Standard"> Standard 12 a 15 días (5%)
                     </label>
                   </form>
-                  <div class="subtotal"> 
+                  <div class="mt-5"> 
                     <h6> Subtotal: </h6>
                     <h6> Costo de envío: </h6>
                     <h4 id="total"> Total: </h4>
@@ -170,7 +173,7 @@
                 </div>
               </div>
               <div class="modal-footer">
-                <button class="btn pinkButton">Finalizar compra</button>
+                <button id="finCompra" class="btn pinkButton me-3" data-bs-dismiss="modal">Finalizar compra</button>
               </div>
             </div>
           </div>
@@ -197,6 +200,7 @@
   <script src="js/bootstrap.bundle.min.js"></script>
   <script src="js/init.js"></script>
   <script src="js/cart.js"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </body>
 
 </html>

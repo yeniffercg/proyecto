@@ -188,6 +188,9 @@ function calcularEnvio() {
 document.getElementById("tipo-envio").addEventListener("change", calcularEnvio);
 
 
+document.getElementById("finCompra").addEventListener("click", function() {
+    swal("Compra finalizada", "Haz finalizado con éxito tu compra, que lo disfrutes!", "success");
+});
 
 
 

@@ -409,9 +409,19 @@ label{
   #contCompra, #vaciarCarrito{
     color: white;
   }
+  .modal-content {
+    background-color: #3f3f3f;
+    border-color: #4d4d4d;
+  }
+  .btn-close, #back {
+    filter: invert(100%);
+  }
+  .swal-modal {
+    filter: invert(95%);
+  }
 }
 
-#comprarProd, #comprarCart{
+#comprarProd, #comprarCart, #comprar{
   color: white;
   background-color: #D88AD4;  
   width: 100%;
@@ -469,4 +479,29 @@ input[type=number] { appearance:textfield; }
 
 #back{
   :hover {color: black;}
+  padding: 0;
+  border: none;
+}
+
+.icono-pago {
+  height: 2em;
+  width: auto;
+  margin-top: 2em;
+  margin-bottom: 2em
+}
+
+.icono-pago2 {
+  height: 3em;
+  width: auto;
+  margin-top: 2em;
+  margin-bottom: 2em
+}
+
+.carrito-label {
+  text-align: left;
+  justify-content: flex-start;
+}
+
+input[type="radio"] {
+  margin-right: 1em;
 }
