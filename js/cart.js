@@ -224,10 +224,29 @@ document.getElementById("finCompra").addEventListener("click", function() {
 //function actualizarCantidad(index, cambio) { const cart = JSON.parse(localStorage.getItem("cart"));cart[index].cantidad = Math.max(1, cart[index].cantidad + cambio);     localStorage.setItem("cart", JSON.stringify(cart)); actualizarBadgeCarrito();   }
 // window.addEventListener("storage", function(event) { if (event.key === "cart") { actualizarBadgeCarrito(); } });
 
-// document.getElementById("finCompra").addEventListener("submit", function() {
+
+// Validación de los datos de envío
+// document.getElementById("finCompra").addEventListener("click", function() {
 //     const departamento = document.getElementbyId('departamento').value;
 //     const localidad = document.getElementbyId('localidad').value;
 //     const calle = document.getElementbyId('calle').value; 
 //     const puerta = document.getElementbyId('num-puerta').value;
 
 //    if (!departamento || !localidad || !calle || !puerta) 
+
+
+document.addEventListener("DOMContentLoaded", function() { 
+    document.getElementById("finCompra").addEventListener("click", function() {
+        
+        const departamento = document.getElementById('departamento').value;
+        const localidad = document.getElementById('localidad').value;
+        const calle = document.getElementById('calle').value; 
+        const puerta = document.getElementById('num-puerta').value;
+
+        if (!departamento || !localidad || !calle || !puerta) {
+            
+            alert("Por favor, complete todos los campos de envío.");
+            return;  
+        }
+    });
+});
