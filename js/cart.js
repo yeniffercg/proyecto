@@ -163,35 +163,54 @@ document.getElementById("vaciarCarrito").addEventListener("click",function() {
     carritoVacio();
 })
 
+//Calcula el costo de envio segun
 function calcularEnvio() {
     envioPremium = document.getElementById("premium");
     envioExpress = document.getElementById("express");
     envioStandard = document.getElementById("standard");
-    subtotalString = document.getElementById("subtotal");
-    subtotal = parseFloat(subtotalString.textContent);
+    subtotalElement = document.getElementById("subtotal")
     precioTotal = document.getElementById("total");
+
     costoEnvio = 0;
+    subtotal = parseFloat(subtotalElement.textContent.replace(/[^\d.-]/g, ''));
     
-    if(envioPremium.checked){
+    if(envioPremium && envioPremium.checked){
         costoEnvio = subtotal * 0.15;
     }
-    if(envioExpress.checked){
+    if(envioExpress && envioExpress.checked){
         costoEnvio = subtotal * 0.07;
     }
-    if(envio.standard.checked){
-        precioTotal = subtotal * 0.05;
+    if(envioStandard && envioStandard.checked){
+        costoEnvio = subtotal * 0.05;
     }
     total = subtotal + costoEnvio;
     precioTotal.innerHTML = `$${total.toFixed(2)}`
+
 }
 
-document.getElementById("tipo-envio").addEventListener("change", calcularEnvio);
+    //Calcula envio al cargar pagina
+document.addEventListener("DOMContentLoaded", function(){
+    calcularEnvio();
 
+    //Calcula envio cuando el modal esta abierto
+document.getElementById("comprarModal2").addEventListener("show.bs.modal", function(){
+    calcularEnvio();
 
+});
+
+  // Actualizar el total cuando se cambie el tipo de envío
+document.querySelectorAll('input[name="envio"]').forEach(function(element) {
+    element.addEventListener("change", function() {
+        calcularEnvio();
+    });
+});
+
+});
+
+//Muestra alerta al finalizar compra
 document.getElementById("finCompra").addEventListener("click", function() {
     swal("Compra finalizada", "Haz finalizado con éxito tu compra, que lo disfrutes!", "success");
 });
-
 
 
 // document.addEventListener("DOMContentLoaded", function() { actualizarBadgeCarrito(); });
