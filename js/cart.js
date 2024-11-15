@@ -8,6 +8,7 @@ document.addEventListener("DOMContentLoaded", function() {
     } else {
         cantidadCarrito();
         cart.forEach((product, index) => {
+            //Recorre el carrito y agrega cada producto a la lista de compra
             list.innerHTML += `
                 <div class="list-group-item list-group-item-action cursor-active">
                     <div class="row">
@@ -45,20 +46,25 @@ document.addEventListener("DOMContentLoaded", function() {
                         </div>
                     </div>
                 </div>`;
+            //Suma cada producto y su cantidad al resumen de la compra
             resumeList.innerHTML += `
                 <h5 class="fw-normal my-3">${product.name} (<span id="cantidadResume${index}">${product.cantidad}</span>)
                 <span class="float-end" id="subtotal-${index}">
                  ${product.currency} ${(product.cost * product.cantidad)}</span></h5>`;
             calcularSubtotal(cart, index);
+            actualizarBadgeCarrito();
+            calcularEnvio();
         });
     }
 });
 
+//Redirige a la página del producto al que le des click
 function setProdID(id){
     localStorage.setItem("prodID", id);
     window.location = "product-info.html"
 }
 
+//Edita el subtitulo de la página según las cantidad de productos en el carrito
 function cantidadCarrito(){
     miCarrito = document.getElementById("miCarrito");
     cart = JSON.parse(localStorage.getItem('cart'));
@@ -77,6 +83,7 @@ function cantidadCarrito(){
     }
 }
 
+//Elimina un producto del carrito y recarga la página
 function removeItem(id){
     const cart = JSON.parse(localStorage.getItem('cart'));
     const index = cart.findIndex( product => product.id === id );
@@ -85,6 +92,7 @@ function removeItem(id){
     location.reload();
 }
 
+//Calcula el subtotal en el resumen de la compra con el cambio de moneda
 function calcularSubtotal(cart, index){
     cart = JSON.parse(localStorage.getItem('cart'));
     subtotal = document.getElementById("subtotal");
@@ -117,6 +125,7 @@ function calcularSubtotal(cart, index){
     } 
 }
 
+//Actualiza la cantidad mostrada en el item de la lista al sumar o restar productos
 function actualizarCantidad(index, cambio) {
     const cart = JSON.parse(localStorage.getItem('cart'));
     cart[index].cantidad = Math.max(1, cart[index].cantidad + cambio);
@@ -131,13 +140,15 @@ function actualizarCantidad(index, cambio) {
     localStorage.setItem('cart', JSON.stringify(cart));
     cantidadCarrito();
     calcularSubtotal(cart, index);
+    actualizarBadgeCarrito();
 }
 
+//Escucha el click al botón Continuar comprando y redirige a Categorías.
 document.getElementById("contCompra").addEventListener("click", function() {
     window.location.href = "categories.html";
 });
 
-
+//Muestra una alerta y un botón para comenzar a comprar. Esconde la lista de productos comprados y el resumen del pedido
 function carritoVacio() {
     const list = document.getElementById("product-list");
     resume = document.getElementById("resume");
@@ -158,18 +169,22 @@ function carritoVacio() {
     console.error ("No hay elementos en el local storage!");
 }
 
+//Elimina los elementos del localStorage, llama a carritoVacio() y actualiza el badge
 document.getElementById("vaciarCarrito").addEventListener("click",function() {
     localStorage.removeItem("cart");
     carritoVacio();
+    actualizarBadgeCarrito();
 })
 
-//Calcula el costo de envio segun
+//Calcula el costo de envio segun el tipo de envio seleccionado
 function calcularEnvio() {
     envioPremium = document.getElementById("premium");
     envioExpress = document.getElementById("express");
     envioStandard = document.getElementById("standard");
-    subtotalElement = document.getElementById("subtotal")
+    subtotalElement = document.getElementById("subtotal");
     precioTotal = document.getElementById("total");
+    const subtotalModal = document.getElementById("subtotalModal");
+    const envioModal = document.getElementById("envioModal");
 
     costoEnvio = 0;
     subtotal = parseFloat(subtotalElement.textContent.replace(/[^\d.-]/g, ''));
@@ -183,70 +198,100 @@ function calcularEnvio() {
     if(envioStandard && envioStandard.checked){
         costoEnvio = subtotal * 0.05;
     }
+  
     total = subtotal + costoEnvio;
-    precioTotal.innerHTML = `$${total.toFixed(2)}`
+    precioTotal.innerHTML = `$${total.toFixed(2)}`;
+
+    subtotalModal.innerHTML = `$${subtotal.toFixed(2)}`;
+    envioModal.innerHTML = `$${costoEnvio.toFixed(2)}`;
 
 }
 
-    //Calcula envio al cargar pagina
-document.addEventListener("DOMContentLoaded", function(){
-    calcularEnvio();
-
-    //Calcula envio cuando el modal esta abierto
+//Calcula envio cuando el modal esta abierto
 document.getElementById("comprarModal2").addEventListener("show.bs.modal", function(){
     calcularEnvio();
 
 });
 
-  // Actualizar el total cuando se cambie el tipo de envío
+// Actualizar el total cuando se cambie el tipo de envío
 document.querySelectorAll('input[name="envio"]').forEach(function(element) {
     element.addEventListener("change", function() {
         calcularEnvio();
     });
 });
 
-});
-
-//Muestra alerta al finalizar compra
-document.getElementById("finCompra").addEventListener("click", function() {
-    swal("Compra finalizada", "Haz finalizado con éxito tu compra, que lo disfrutes!", "success");
-});
-
-
-// document.addEventListener("DOMContentLoaded", function() { actualizarBadgeCarrito(); });
-
-// function actualizarBadgeCarrito() {  const cart = JSON.parse(localStorage.getItem("cart")) || []; let totalItems = 0; cart.forEach(product => {totalItems += product.cantidad;});const cartBadge = document.querySelector(".dropdown-item.position-relative span"); if (cartBadge) {  cartBadge.textContent = totalItems;}}
-
-//document.getElementById("vaciarCarrito").addEventListener("click", function() { actualizarBadgeCarrito();});
-
-//document.getElementById("contCompra").addEventListener("click", function() { actualizarBadgeCarrito();});
-
-//function actualizarCantidad(index, cambio) { const cart = JSON.parse(localStorage.getItem("cart"));cart[index].cantidad = Math.max(1, cart[index].cantidad + cambio);     localStorage.setItem("cart", JSON.stringify(cart)); actualizarBadgeCarrito();   }
-// window.addEventListener("storage", function(event) { if (event.key === "cart") { actualizarBadgeCarrito(); } });
-
-
-// Validación de los datos de envío
-// document.getElementById("finCompra").addEventListener("click", function() {
-//     const departamento = document.getElementbyId('departamento').value;
-//     const localidad = document.getElementbyId('localidad').value;
-//     const calle = document.getElementbyId('calle').value; 
-//     const puerta = document.getElementbyId('num-puerta').value;
-
-//    if (!departamento || !localidad || !calle || !puerta) 
-
-
-document.addEventListener("DOMContentLoaded", function() { 
-    document.getElementById("finCompra").addEventListener("click", function() {
-        
-        const departamento = document.getElementById('departamento').value;
-        const localidad = document.getElementById('localidad').value;
-        const calle = document.getElementById('calle').value; 
-        const puerta = document.getElementById('num-puerta').value;
-
-        if (!departamento || !localidad || !calle || !puerta) {
-            
-            alert("Por favor, complete todos los campos de envío.");
-            return;  
-        }
+//Valida los campos al presionar continuar y cambia al siguiente modal
+document.getElementById("continuarBtn").addEventListener('click', function() {
+    const nameCompra = document.getElementById('name-compra');
+    const lastNameCompra = document.getElementById('last-name-compra');
+    const ci = document.getElementById('ci');
+    const numTarjeta = document.getElementById('num-tarjeta');
+    const codigoSeguridad = document.getElementById('codigo-seguridad');
+    const vencimiento = document.getElementById('vencimiento');
+  
+    let isValid = true;
+  
+    [nameCompra, lastNameCompra, codigoSeguridad, ci, numTarjeta, vencimiento].forEach(field => {
+      if (!field.value) {
+        field.classList.remove('valid');
+        field.classList.add('invalid');
+        isValid = false;
+      } else {
+        field.classList.remove('invalid');
+        field.classList.add('valid');
+      }
     });
+  
+    if (isValid) {
+      document.getElementById("continuarBtn").setAttribute("data-bs-target", "#comprarModal2");
+      document.getElementById("continuarBtn").setAttribute("data-bs-toggle", "modal");
+      document.getElementById("continuarBtn").setAttribute("data-bs-dismiss", "modal");
+      document.getElementById("continuarBtn").click(function(){
+        document.getElementById("comprarModal").modal("hide");
+      });
+      document.getElementById("comprarModal").on('hidden.bs.modal', function(){
+        document.getElementById("comprarModal2").modal("show");
+      });
+    }
 });
+
+//Valida los campos al presionar finalizar compra y muestra un mensaje de éxito si todo es válido
+document.getElementById("finCompra").addEventListener('click', function() {
+    const departamento = document.getElementById('departamento');
+    const localidad = document.getElementById('localidad');
+    const calle = document.getElementById('calle');
+    const numeroPuerta = document.getElementById('numero-puerta');
+    const esquina = document.getElementById('esquina');
+  
+    let isValid = true;
+  
+    [departamento, localidad, calle, numeroPuerta, esquina].forEach(field => {
+       if (!field.value) {
+        field.classList.remove('valid');
+        field.classList.add('invalid');
+        isValid = false;
+      } else {
+        field.classList.remove('invalid');
+        field.classList.add('valid');
+      }
+    });
+  
+    if (isValid) {
+        document.getElementById("finCompra").setAttribute("data-bs-dismiss", "modal");
+        swal("Compra finalizada", "Haz finalizado con éxito tu compra, que lo disfrutes!", "success");     
+    }
+});
+
+
+//Actualizar cantidad en badge carrito
+function actualizarBadgeCarrito() {  
+    const cart = JSON.parse(localStorage.getItem("cart")) || []; 
+    let totalItems = 0; 
+    cart.forEach(product => {totalItems += product.cantidad;});
+    const cartBadge = document.querySelector(".dropdown-item.position-relative span"); 
+    
+    if (cartBadge) {  
+        cartBadge.textContent = totalItems;}
+}
+// LO QUE FALTA
+// links a los bancos 

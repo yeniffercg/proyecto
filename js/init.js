@@ -65,5 +65,3 @@ if (isNightMode === 'true') {
 
 //document.getElementById("contCompra").addEventListener("click", function() { actualizarBadgeCarrito();});
 
-//function actualizarCantidad(index, cambio) { const cart = JSON.parse(localStorage.getItem("cart"));cart[index].cantidad = Math.max(1, cart[index].cantidad + cambio);     localStorage.setItem("cart", JSON.stringify(cart)); actualizarBadgeCarrito();   }
-// window.addEventListener("storage", function(event) { if (event.key === "cart") { actualizarBadgeCarrito(); } });

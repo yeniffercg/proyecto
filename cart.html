@@ -86,9 +86,9 @@
                       <input type="radio" name="metodoPago" value="transferenciaBancaria">
                       Transferencia Bancaria
                     </label>
-                    <img src="img/brou.png" alt="BROU" class="icono-pago2 ms-4">
-                    <img src="img/santander.png" alt="Santander" class="icono-pago2 mx-3">
-                    <img src="img/itau.png" alt="ITAU" class="icono-pago2">
+                    <a href="https://ebanking.brou.com.uy/frontend/loginStep1" ></a><img src="img/brou.png" alt="BROU" class="icono-pago2 ms-4"></a>
+                    <a href="https://www.santander.com.uy/santander-digital" ></a><img src="img/santander.png" alt="Santander" class="icono-pago2 mx-3"></a>
+                    <a href="https://www.itau.com.uy" ></a><img src="img/itau.png" alt="ITAU" class="icono-pago2"></a>
                   </form>
                 </div>
                 <div id="form-tarjeta" class="row col-6 g-3 mt-0 ms-2">
@@ -114,7 +114,7 @@
                 </div>
               </div>
               <div class="modal-footer">
-                <button id="toggle" class="btn pinkButton me-3" data-bs-target="#comprarModal2" data-bs-toggle="modal" data-bs-dismiss="modal">Continuar</button>
+                <button id="continuarBtn" class="btn pinkButton me-3">Continuar</button>
               </div>
             </div>
           </div>
@@ -140,16 +140,16 @@
                     <input type="text" id="localidad" class="form-control bg-transparent" placeholder="Localidad" name="localidad" required>
                   </div>
                   <div>
-                    <input type="number" id="calle" class="form-control bg-transparent" placeholder="Calle" name="calle" required>
+                    <input type="text" id="calle" class="form-control bg-transparent" placeholder="Calle" name="calle" required>
                   </div>
                   <div>
                     <input type="number" id="numero-puerta" class="form-control bg-transparent" placeholder="Número de puerta" name="num-puerta" required>
                   </div>
                   <div>
-                    <input type="number" id="esquina" class="form-control bg-transparent" placeholder="Esquina" name="esquina" required>
+                    <input type="text" id="esquina" class="form-control bg-transparent" placeholder="Esquina" name="esquina" required>
                   </div>
                   <div>
-                    <input type="number" id="referencias" class="form-control bg-transparent" placeholder="Referencias" name="referencias" >
+                    <input type="text" id="referencias" class="form-control bg-transparent" placeholder="Referencias" name="referencias" >
                   </div>
                 </div>
                 <div class="col-6 mt-3 ms-3 d-flex flex-column justify-content-between">
@@ -166,14 +166,14 @@
                     </label>
                   </form>
                   <div class="mt-5"> 
-                    <h6> Subtotal: </h6>
-                    <h6> Costo de envío: </h6>
-                    <h4 id="total"> Total: </h4>
+                    <h6> Subtotal: <span id="subtotalModal"></span><h6>
+                    <h6> Costo de envío: <span id="envioModal"></span></h6>
+                    <h4> Total: <span id="total"></span></h4>
                   </div>
                 </div>
               </div>
               <div class="modal-footer">
-                <button id="finCompra" class="btn pinkButton me-3" data-bs-dismiss="modal">Finalizar compra</button>
+                <button id="finCompra" class="btn pinkButton me-3">Finalizar compra</button>
               </div>
             </div>
           </div>
