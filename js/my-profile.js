@@ -96,7 +96,7 @@ const usuarioAlmacenado = localStorage.getItem("username");
  }
 });
 
-
+//Modo nocturno
 const darkMode = document.getElementById('flexSwitchCheckDefault');
 
 darkMode.addEventListener('click', () => {

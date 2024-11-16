@@ -56,12 +56,35 @@ if (isNightMode === 'true') {
   document.body.classList.toggle('night-mode');
 }
 
+//Actualizar cantidad en badge carrito
+function actualizarBadgeCarrito() {  
+  const cart = JSON.parse(localStorage.getItem("cart")) || []; 
+  let totalItems = 0; 
+  cart.forEach(product => {totalItems += product.cantidad;});
+  const cartBadge = document.querySelector(".dropdown-item.position-relative span"); 
+  
+  if (cartBadge) {  
+      cartBadge.textContent = totalItems;}
+}
 
-//document.addEventListener("DOMContentLoaded", function() { actualizarBadgeCarrito(); });
 
-// function actualizarBadgeCarrito() {  const cart = JSON.parse(localStorage.getItem("cart")) || []; let totalItems = 0; cart.forEach(product => {totalItems += product.cantidad;});const cartBadge = document.querySelector(".dropdown-item.position-relative span"); if (cartBadge) {  cartBadge.textContent = totalItems;}}
+document.addEventListener("DOMContentLoaded", function() { 
+  actualizarBadgeCarrito();
+ });
 
-//document.getElementById("vaciarCarrito").addEventListener("click", function() { actualizarBadgeCarrito();});
+function actualizarBadgeCarrito() {  
+  const cart = JSON.parse(localStorage.getItem("cart")) || [];
+  let totalItems = 0; cart.forEach(product => {totalItems += product.cantidad;});
+  const cartBadge = document.querySelector(".dropdown-item.position-relative span"); 
 
-//document.getElementById("contCompra").addEventListener("click", function() { actualizarBadgeCarrito();});
+  if (cartBadge) {  
+    cartBadge.textContent = totalItems;}}
+
+document.getElementById("vaciarCarrito").addEventListener("click", function() { 
+  actualizarBadgeCarrito();
+});
+
+document.getElementById("contCompra").addEventListener("click", function() { 
+  actualizarBadgeCarrito();
+});
 

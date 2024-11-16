@@ -76,19 +76,19 @@
                   <h1 class="fs-5 mb-3" id="comprarModal">Método de pago</h1>
                   <form id="formularioPago">
                     <label class="carrito-label">
-                      <input type="radio" name="metodoPago" value="tarjetaCredito" checked>
+                      <input onclick="mostrarTarjeta()" type="radio" name="metodoPago" value="tarjetaCredito" checked>
                       Tarjeta de crédito
                     </label>
                     <img src="img/master.png" alt="Mastercard" class="icono-pago ms-4">
                     <img src="img/visa.png" alt="Visa" class="icono-pago mx-3">
                     <img src="img/oca.png" alt="OCA" class="icono-pago">
                     <label class="carrito-label">
-                      <input type="radio" name="metodoPago" value="transferenciaBancaria">
+                      <input onclick="mostrarTransferencia()" type="radio" name="metodoPago" value="transferenciaBancaria">
                       Transferencia Bancaria
                     </label>
-                    <a href="https://ebanking.brou.com.uy/frontend/loginStep1" ></a><img src="img/brou.png" alt="BROU" class="icono-pago2 ms-4"></a>
-                    <a href="https://www.santander.com.uy/santander-digital" ></a><img src="img/santander.png" alt="Santander" class="icono-pago2 mx-3"></a>
-                    <a href="https://www.itau.com.uy" ></a><img src="img/itau.png" alt="ITAU" class="icono-pago2"></a>
+                    <a href="https://ebanking.brou.com.uy/frontend/loginStep1"><img src="img/brou.png" alt="BROU" class="icono-pago2 ms-4"></a>
+                    <a href="https://www.santander.com.uy/santander-digital"><img src="img/santander.png" alt="Santander" class="icono-pago2 mx-3"></a>
+                    <a href="https://www.itau.com.uy"><img src="img/itau.png" alt="ITAU" class="icono-pago2"></a>
                   </form>
                 </div>
                 <div id="form-tarjeta" class="row col-6 g-3 mt-0 ms-2">
@@ -109,11 +109,32 @@
                     <input type="number" id="codigo-seguridad" class="form-control bg-transparent" placeholder="Código de seguridad" name="codigo-seguridad" required>
                   </div>
                   <div>
-                    <input type="number" id="vencimiento" class="form-control bg-transparent" placeholder="Vencimiento" name="vencimiento" required>
+                    <input type="text" id="vencimiento" class="form-control bg-transparent" placeholder="Vencimiento" name="vencimiento" required>
                   </div>
                 </div>
+                <div id="datosTransferencia" class="row col-6 g-3 mt-0 ms-2 d-none">
+                  <h1 class="fs-5 mt-1" id="comprarModal">Datos de la transferencia</h1>
+                  <div>
+                    <input type="text" id="beneficiario" class="form-control bg-transparent" placeholder="Nombre del beneficiario" name="name-beneficiario" required>
+                  </div>
+                  <div>
+                    <input type="text" id="entidadFinanciera" class="form-control bg-transparent" placeholder="Entidad financiera" name="entidad-financiera" required>
+                  </div>
+                  <div>
+                    <input type="number" id="cuentaBancaria" class="form-control bg-transparent" placeholder="Cuenta Bancaria" name="cuenta-bancaria" required>
+                  </div>
+                  <div>
+                    <input type="number" id="codigoSwift" class="form-control bg-transparent" placeholder="Código Swift" name="código-swift" required>
+                  </div>
+                  <div>
+                    <input type="number" id="monto" class="form-control bg-transparent" placeholder="Monto" name="monto" required>
+                  </div>
+                  <div>
+                    <input type="text" id="concepto" class="form-control bg-transparent" placeholder="Concepto" name="concepto" required>
+                  </div>
               </div>
               <div class="modal-footer">
+                <div id="alertaModal" class="alert alert-danger m-2 p-2" style="display: none;" role="alert">Por favor, verifica que todos los campos sean correctos.</div>
                 <button id="continuarBtn" class="btn pinkButton me-3">Continuar</button>
               </div>
             </div>

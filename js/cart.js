@@ -220,40 +220,102 @@ document.querySelectorAll('input[name="envio"]').forEach(function(element) {
     });
 });
 
+//Muestra el formulario para los datos de tarjeta y oculta los datos de transferencia
+function mostrarTarjeta(){
+    document.getElementById("form-tarjeta").style.display = "block";
+    document.getElementById("datosTransferencia").style.display = "none";
+}
+
+function mostrarTransferencia() {
+    document.getElementById("form-tarjeta").style.display = "none"; 
+    document.getElementById("datosTransferencia").classList.remove("d-none");
+    document.getElementById("datosTransferencia").style.display = "block";
+}
+
+
 //Valida los campos al presionar continuar y cambia al siguiente modal
-document.getElementById("continuarBtn").addEventListener('click', function() {
-    const nameCompra = document.getElementById('name-compra');
-    const lastNameCompra = document.getElementById('last-name-compra');
-    const ci = document.getElementById('ci');
-    const numTarjeta = document.getElementById('num-tarjeta');
-    const codigoSeguridad = document.getElementById('codigo-seguridad');
-    const vencimiento = document.getElementById('vencimiento');
-  
-    let isValid = true;
-  
-    [nameCompra, lastNameCompra, codigoSeguridad, ci, numTarjeta, vencimiento].forEach(field => {
-      if (!field.value) {
-        field.classList.remove('valid');
-        field.classList.add('invalid');
-        isValid = false;
-      } else {
-        field.classList.remove('invalid');
-        field.classList.add('valid');
-      }
-    });
-  
+document.getElementById("continuarBtn").addEventListener("click", function () {
+    const metodoPago = document.querySelector('input[name="metodoPago"]:checked');
+    let isValid = false;
+
+    // Función para validar un grupo de campos
+    const validateFields = (fields) => {
+        let isValid = true;
+
+        fields.forEach((field) => {
+            if (!field.value) {
+                field.classList.add("invalid");
+                isValid = false;
+            } else {
+                field.classList.remove("invalid");
+            }
+        });
+
+        // Validaciones específicas
+        const ci = document.getElementById('ci');
+        const numTarjeta = document.getElementById('num-tarjeta');
+        const vencimiento = document.getElementById('vencimiento');
+
+        if (ci && !/^\d{7,8}$/.test(ci.value)) {
+            ci.classList.add("invalid");
+            isValid = false;
+        }
+
+        if (numTarjeta && !/^\d{16}$/.test(numTarjeta.value)) {
+            numTarjeta.classList.add("invalid");
+            isValid = false;
+        }
+
+        if (vencimiento && !/^(0[1-9]|1[0-2])\/\d{2}$/.test(vencimiento.value)) {
+            vencimiento.classList.add("invalid");
+            isValid = false;
+        }
+
+        if (codigoSeguridad && !/^\d{3}$/.test(codigoSeguridad.value)) {
+            codigoSeguridad.classList.add("invalid");
+            isValid = false;
+        }
+
+        return isValid;
+    };
+
+    // Validar según método de pago
+    if (metodoPago) {
+        if (metodoPago.value === "tarjetaCredito") {
+            const fields = [
+                document.getElementById('name-compra'),
+                document.getElementById('last-name-compra'),
+                document.getElementById('ci'),
+                document.getElementById('num-tarjeta'),
+                document.getElementById('codigo-seguridad'),
+                document.getElementById('vencimiento'),
+            ];
+            isValid = validateFields(fields);
+        } else if (metodoPago.value === "transferenciaBancaria") {
+            const fields = [
+                document.getElementById('beneficiario'),
+                document.getElementById('entidadFinanciera'),
+                document.getElementById('cuentaBancaria'),
+                document.getElementById('codigoSwift'),
+                document.getElementById('monto'),
+                document.getElementById('concepto'),
+            ];
+            isValid = validateFields(fields);
+        }
+    }
+
+    // Mostrar modal si es válido
     if (isValid) {
-      document.getElementById("continuarBtn").setAttribute("data-bs-target", "#comprarModal2");
-      document.getElementById("continuarBtn").setAttribute("data-bs-toggle", "modal");
-      document.getElementById("continuarBtn").setAttribute("data-bs-dismiss", "modal");
-      document.getElementById("continuarBtn").click(function(){
-        document.getElementById("comprarModal").modal("hide");
-      });
-      document.getElementById("comprarModal").on('hidden.bs.modal', function(){
-        document.getElementById("comprarModal2").modal("show");
-      });
+        const comprarModal = new bootstrap.Modal(document.getElementById("comprarModal"));
+        const comprarModal2 = new bootstrap.Modal(document.getElementById("comprarModal2"));
+        comprarModal.hide();
+        comprarModal2.show();
+    } else {
+        let alert = document.getElementById("alertaModal");
+        alert.style.display = "block";
     }
 });
+
 
 //Valida los campos al presionar finalizar compra y muestra un mensaje de éxito si todo es válido
 document.getElementById("finCompra").addEventListener('click', function() {
@@ -278,20 +340,9 @@ document.getElementById("finCompra").addEventListener('click', function() {
   
     if (isValid) {
         document.getElementById("finCompra").setAttribute("data-bs-dismiss", "modal");
+        document.getElementById("finCompra").click(function(){
+            document.getElementById("comprarModal2").modal("hide");
+          });
         swal("Compra finalizada", "Haz finalizado con éxito tu compra, que lo disfrutes!", "success");     
     }
 });
-
-
-//Actualizar cantidad en badge carrito
-function actualizarBadgeCarrito() {  
-    const cart = JSON.parse(localStorage.getItem("cart")) || []; 
-    let totalItems = 0; 
-    cart.forEach(product => {totalItems += product.cantidad;});
-    const cartBadge = document.querySelector(".dropdown-item.position-relative span"); 
-    
-    if (cartBadge) {  
-        cartBadge.textContent = totalItems;}
-}
-// LO QUE FALTA
-// links a los bancos 
