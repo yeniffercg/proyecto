@@ -238,6 +238,9 @@ document.getElementById("continuarBtn").addEventListener("click", function () {
     const metodoPago = document.querySelector('input[name="metodoPago"]:checked');
     let isValid = false;
 
+    // Verificamos si se detectó el método de pago
+    console.log("Método de pago seleccionado:", metodoPago ? metodoPago.value : "ninguno");
+
     // Función para validar un grupo de campos
     const validateFields = (fields) => {
         let isValid = true;
@@ -246,42 +249,19 @@ document.getElementById("continuarBtn").addEventListener("click", function () {
             if (!field.value) {
                 field.classList.add("invalid");
                 isValid = false;
+                console.log("Campo inválido:", field.id);  // Imprimimos el campo inválido
             } else {
                 field.classList.remove("invalid");
             }
         });
 
-        // Validaciones específicas
-        const ci = document.getElementById('ci');
-        const numTarjeta = document.getElementById('num-tarjeta');
-        const vencimiento = document.getElementById('vencimiento');
-
-        if (ci && !/^\d{7,8}$/.test(ci.value)) {
-            ci.classList.add("invalid");
-            isValid = false;
-        }
-
-        if (numTarjeta && !/^\d{16}$/.test(numTarjeta.value)) {
-            numTarjeta.classList.add("invalid");
-            isValid = false;
-        }
-
-        if (vencimiento && !/^(0[1-9]|1[0-2])\/\d{2}$/.test(vencimiento.value)) {
-            vencimiento.classList.add("invalid");
-            isValid = false;
-        }
-
-        if (codigoSeguridad && !/^\d{3}$/.test(codigoSeguridad.value)) {
-            codigoSeguridad.classList.add("invalid");
-            isValid = false;
-        }
-
         return isValid;
     };
 
-    // Validar según método de pago
+    // Validar según el método de pago seleccionado
     if (metodoPago) {
         if (metodoPago.value === "tarjetaCredito") {
+            // Campos para tarjeta de crédito
             const fields = [
                 document.getElementById('name-compra'),
                 document.getElementById('last-name-compra'),
@@ -290,8 +270,41 @@ document.getElementById("continuarBtn").addEventListener("click", function () {
                 document.getElementById('codigo-seguridad'),
                 document.getElementById('vencimiento'),
             ];
+            
+            // Validaciones específicas para tarjeta de crédito
+            const ci = document.getElementById('ci');
+            const numTarjeta = document.getElementById('num-tarjeta');
+            const vencimiento = document.getElementById('vencimiento');
+            const codigoSeguridad = document.getElementById('codigo-seguridad');
+    
+            if (ci && !/^\d{7,8}$/.test(ci.value)) {
+                ci.classList.add("invalid");
+                isValid = false;
+                console.log("CI inválido");
+            }
+    
+            if (numTarjeta && !/^\d{16}$/.test(numTarjeta.value)) {
+                numTarjeta.classList.add("invalid");
+                isValid = false;
+                console.log("Número de tarjeta inválido");
+            }
+    
+            if (vencimiento && !/^(0[1-9]|1[0-2])\/\d{2}$/.test(vencimiento.value)) {
+                vencimiento.classList.add("invalid");
+                isValid = false;
+                console.log("Vencimiento inválido");
+            }
+    
+            if (codigoSeguridad && !/^\d{3}$/.test(codigoSeguridad.value)) {
+                codigoSeguridad.classList.add("invalid");
+                isValid = false;
+                console.log("Código de seguridad inválido");
+            }
+
             isValid = validateFields(fields);
+    
         } else if (metodoPago.value === "transferenciaBancaria") {
+            // Campos para transferencia bancaria
             const fields = [
                 document.getElementById('beneficiario'),
                 document.getElementById('entidadFinanciera'),
@@ -300,6 +313,10 @@ document.getElementById("continuarBtn").addEventListener("click", function () {
                 document.getElementById('monto'),
                 document.getElementById('concepto'),
             ];
+
+            // Depuramos los campos de transferencia para ver si se están pasando correctamente
+            fields.forEach(field => console.log("Campo de transferencia:", field.id, "Valor:", field.value));
+
             isValid = validateFields(fields);
         }
     }
@@ -312,7 +329,9 @@ document.getElementById("continuarBtn").addEventListener("click", function () {
         comprarModal2.show();
     } else {
         let alert = document.getElementById("alertaModal");
+        let alert2 = document.getElementById("alertaModal2");
         alert.style.display = "block";
+        alert2.style.display = "block";
     }
 });
 
@@ -346,3 +365,4 @@ document.getElementById("finCompra").addEventListener('click', function() {
         swal("Compra finalizada", "Haz finalizado con éxito tu compra, que lo disfrutes!", "success");     
     }
 });
+
