@@ -1,5 +1,16 @@
 {
   "dependencies": {
+    "express": "^4.21.1",
     "sweetalert": "^2.1.2"
-  }
+  },
+  "name": "proyecto",
+  "version": "1.0.0",
+  "main": "app.js",
+  "scripts": {
+    "start": "",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "grupo 8",
+  "license": "ISC",
+  "description": ""
 }
