@@ -12,5 +12,13 @@
   },
   "author": "grupo 8",
   "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yeniffercg/proyecto.git"
+  },
+  "bugs": {
+    "url": "https://github.com/yeniffercg/proyecto/issues"
+  },
+  "homepage": "https://github.com/yeniffercg/proyecto#readme",
   "description": ""
 }
