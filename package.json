@@ -1,7 +1,7 @@
 {
   "dependencies": {
-    "express": "^4.21.1",
     "sweetalert": "^2.1.2"
+<<<<<<< HEAD
   },
   "name": "proyecto",
   "version": "1.0.0",
@@ -13,4 +13,7 @@
   "author": "grupo 8",
   "license": "ISC",
   "description": ""
+=======
+  }
+>>>>>>> parent of c29b70d (Entrega 8)
 }
