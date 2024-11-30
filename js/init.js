@@ -80,11 +80,3 @@ function actualizarBadgeCarrito() {
   if (cartBadge) {  
     cartBadge.textContent = totalItems;}}
 
-document.getElementById("vaciarCarrito").addEventListener("click", function() { 
-  actualizarBadgeCarrito();
-});
-
-document.getElementById("contCompra").addEventListener("click", function() { 
-  actualizarBadgeCarrito();
-});
-
