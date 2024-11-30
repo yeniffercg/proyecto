@@ -366,3 +366,13 @@ document.getElementById("finCompra").addEventListener('click', function() {
     }
 });
 
+//Actualiza el badge al vaciar el carrito y al continuar comprando
+document.getElementById("vaciarCarrito").addEventListener("click", function() { 
+  actualizarBadgeCarrito();
+});
+
+document.getElementById("contCompra").addEventListener("click", function() { 
+  actualizarBadgeCarrito();
+});
+
+
